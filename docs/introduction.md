@@ -100,6 +100,3 @@ Run `node hello.js` and in a new browser window you'll get:
 Want to learn how to build the real app? Jump to a tutorial for your language:
 
 * [Python](/docs/tutorials/python)
-* [Bash](/docs/tutorials/bash)
-* [PowerShell](/docs/tutorials/powershell)
-* [Node.js](/docs/tutorials/node)
