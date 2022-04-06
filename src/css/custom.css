@@ -1,0 +1,192 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #0098da;
+  --ifm-color-primary-dark: #0089c4;
+  --ifm-color-primary-darker: #0081b9;
+  --ifm-color-primary-darkest: #006a99;
+  --ifm-color-primary-light: #00a7f0;
+  --ifm-color-primary-lighter: #00affb;
+  --ifm-color-primary-lightest: #1cbaff;
+
+  --ifm-color-secondary: #f8f8f8;
+
+  --ifm-code-font-size: 95%;
+  --ifm-h4-font-size: 1.1rem;
+
+  --flet-link-color: #02aaf2;
+  --ifm-link-color: var(--flet-link-color);
+  --ifm-navbar-link-hover-color: var(--flet-link-color);
+
+  /* navbar */
+  /* --ifm-navbar-padding-vertical: 0.5rem;
+  --ifm-navbar-padding-horizontal: 0.7rem; */
+  --ifm-navbar-background-color: #fff;
+
+  /* menu */
+  --ifm-menu-color-active: var(--flet-link-color);
+  --ifm-tabs-color-active: var(--flet-link-color);
+}
+
+.navbar__logo {
+  /* width: 42px; */
+  height: 30px;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(234, 236, 238);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.flet-hero h1 {
+  color: #333;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.hero__subtitle {
+  color: #333;
+  font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+.control-screenshot {
+  padding: 10px;
+  text-align: center;
+}
+
+.control-demo {
+  color: var(--ifm-color-secondary-lightest);
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: var(--ifm-color-primary);
+  transition: background 0.6s;
+}
+
+.control-demo:hover {
+  color: var(--ifm-color-secondary-lightest);
+  text-decoration: none;
+  background-color: var(--ifm-color-primary-darkest);
+}
+
+/* Dark theme */
+html[data-theme='dark']:root {
+  --flet-link-color: #02aaf2;
+  --ifm-background-color: #181A21;
+  --ifm-navbar-background-color: #181A21;
+  --ifm-footer-background-color: #1f2127;
+  --ifm-color-secondary: #2f2f2f;
+}
+
+html[data-theme='dark'] .navbar__title {
+  color: #f0f0f0;
+}
+
+html[data-theme='dark'] .flet-hero h1 {
+  color: var(--ifm-font-color-base);
+}
+
+html[data-theme='dark'] .hero__subtitle {
+  color: var(--ifm-color-emphasis-600);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgb(50, 52, 64);
+}
+
+.legal ol {
+  counter-reset: item;
+  list-style-type: none;
+}
+
+.legal > ol > li {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.legal ol li:before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+.legal ol ol ol li:before {
+  content: none;
+}
+
+.legal ol ol {
+  list-style-type: none;
+}
+
+.legal ol ol li {
+  text-transform: none;
+  margin: 0.5rem 0;
+}
+
+.legal ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.legal ol ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.legal ol ol ol ol ol {
+  list-style-type: upper-alpha;
+}
+
+.signup-form {
+  text-align: center;
+  margin: 2rem auto 1rem auto;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  background-color: var(--ifm-color-secondary);
+  border-radius: 8px;
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.signup-form h3 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.signup-form input[type=email],
+.signup-form input[type=email]:focus {
+  border-style: solid;
+  border-width: 2px 0 2px 2px;
+  border-color: var(--ifm-color-primary-light);
+  border-radius: 8px 0 0 8px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 7px 15px;
+  width: 80%;
+}
+
+.signup-form input[type=submit] {
+  background-color: var(--ifm-color-primary-lightest);
+  display: inline-block;
+  line-height: 1.2em;
+  text-decoration: none !important;
+  transition: background 0.6s;
+  border-color: var(--ifm-color-primary-light);
+  border-style: solid;
+  border-radius: 0 8px 8px 0;
+  border-width: 2px 2px 2px 0;
+  color: var(--ifm-color-primary-dark);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 7px 20px 6px 20px;    
+}
