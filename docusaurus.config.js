@@ -10,8 +10,8 @@ module.exports = {
   organizationName: 'flet-dev', // Usually your GitHub org/user name.
   projectName: 'flet', // Usually your repo name.
   customFields: {
-    heroTitle: 'Build internal web apps quickly in the language you already know',
-    heroSubTitle: 'Build secure dashboards and interactive web apps in Python, Bash, PowerShell, C# or Node.js. No web dev experience required.',
+    heroTitle: 'Build awesome apps that run anywere',
+    heroSubTitle: 'Flet enables backend developers to easily build realtime web, mobile and desktop apps in their favorite language. No frontend experience required.',
   },
   themeConfig: {
     hideableSidebar: true,

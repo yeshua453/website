@@ -43,11 +43,11 @@ function Feature({ imageUrl, title, description }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
     <div className={clsx('col col--4', styles.feature)}>
-      {imgUrl && (
+      {/* {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
         </div>
-      )}
+      )} */}
       <h3>{title}</h3>
       <p>{description}</p>
     </div>
@@ -64,10 +64,7 @@ function Home() {
       <div className="container">
         <header className={clsx('flet-hero', styles.heroBanner)}>
           <div className="row">
-            <div className="col col--6">
-              <div className={styles.bkg}></div>
-            </div>
-            <div className="col col--6">
+            <div className="col">
               <div className={styles.right}>
                 <h1 className="hero__title">{siteConfig.customFields.heroTitle}</h1>
                 <p className="hero__subtitle">{siteConfig.customFields.heroSubTitle}</p>
