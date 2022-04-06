@@ -19,29 +19,6 @@ Page
      └─ Button
 ```
 
-## Control ID
-
-Every control on a page has an **ID**. If `id` is not specified when adding a control it will be auto-generated.
-Auto-generated IDs have format of `_{number}`, for example `_1`, `_2`. [Add](/docs/reference/protocol/commands/add) command always returns the ID of a control which can be saved for future reference.
-
-User-defined IDs can contain alphanumerics (`A-Za-z0-9`), dash (`-`) and underscore (`_`). However, user-defined ID should not start from `_` and cannot contain `:` which is used to separate parts of an unique ID.
-
-### Unique ID
-
-To guarantee the uniqueness of user-defined IDs across the page Flet automatically prefixes them with parent ID when adding control to a page. Only user-defined IDs will be used as parts of unique ID.
-
-For example, you may want to add a [Button](controls/button) with `id=ok` into two stacks: one with an auto-generated ID `_1` and another one with user-defined `id=footer`:
-
-```
-...
-Stack id=_1
- └─ Button id=ok
-Stack id=footer
- └─ Button id=footer:ok
-```
-
-Once controls added to a page the ID of a second button will be prefixed with `footer:` and thus it will be referenced later as `footer:ok`, for example as [event target](/docs/reference/protocol#events).
-
 ## Common properties
 
 All Flet controls have the following properties:

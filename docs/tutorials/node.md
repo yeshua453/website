@@ -187,35 +187,6 @@ Parameters:
   * `token` (string) - authentication token for self-hosted server.
 * `sessionCallback` - callback function for handling a session. [Connection](#connection-class) is passed as an argument.
 
-### `Connection` class
-
-Represents a connection to a page or session. `Connection` provides methods for adding, modifying, querying and removing controls on a web page.
-
-#### `send(command)`
-
-Sends a raw command to Flet server via [Flet protocol](/docs/reference/protocol).
-
-For example, to update `errorMessage` property of textbox with ID `number`:
-
-```javascript
-await page.send("set number errorMessage='Some error message'")
-```
-
-#### `waitEvent()`
-
-Blocks until an event triggered by a user received. The method returns an instance of [Event](#event-class) class.
-
-For example, reading events in a loop until any button clicked:
-
-```javascript
-while(true) {
-  let e = await page.waitEvent()
-  if e.name === 'click' {
-    break
-  }
-}
-```
-
 ### `Event` class
 
 Describes the details of event returned by `waitEvent()` method and has the following properties:

@@ -492,12 +492,6 @@ A new browser windows will be opened with the URL like this:
 https://app.flet.dev/public/{random}
 ```
 
-:::note
-[Flet Service](/docs/pglet-service) is in technical preview now and you are sharing the app in a public namespace.
-
-Please note that we have removed the name of the page from the call above, so it's generated randomly to avoid name collision on public Flet service with other users.
-:::
-
 ### Replit
 
 Instant sharing is a great option to quickly share an app on the web, but it requires your computer to be on all the time.
