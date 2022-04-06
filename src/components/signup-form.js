@@ -32,7 +32,7 @@ export default function SignupForm() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
-              });
+            });
             const results = await response.json();
             console.log(`Results:`, results);
         }
@@ -47,11 +47,11 @@ export default function SignupForm() {
                         return <div>Thank you! You will receive the confirmation email shortly.</div>
                     } else if (window.location.href.endsWith('?signup-confirmed')) {
                         // signup confirmed
-                        return <div><span style={{fontSize:'25px', marginRight:'10px'}}>🎉</span>Congratulations! You have successfully subscribed to Pglet newsletter.</div>
+                        return <div><span style={{ fontSize: '25px', marginRight: '10px' }}>🎉</span>Congratulations! You have successfully subscribed to Flet newsletter.</div>
                     } else {
                         // signup form
                         return <form onSubmit={onSubmit}>
-                            <h3>Subscribe to Pglet newsletter for project updates and tutorials!</h3>
+                            <h3>Subscribe to Flet newsletter for project updates and tutorials!</h3>
                             <input
                                 type="email"
                                 value={email}

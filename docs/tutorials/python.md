@@ -1,5 +1,5 @@
 ---
-title: Create a web app in Python with Pglet
+title: Create a web app in Python with Flet
 sidebar_label: Python
 slug: python
 ---
@@ -7,7 +7,7 @@ slug: python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this tutorial we will show you, step-by-step, how to create a ToDo web app in Python using Pglet framework and then share it on the internet. The app is a single-file console program of just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py), yet it is a multi-session, modern single-page application with rich, responsive UI.
+In this tutorial we will show you, step-by-step, how to create a ToDo web app in Python using Flet framework and then share it on the internet. The app is a single-file console program of just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py), yet it is a multi-session, modern single-page application with rich, responsive UI.
 
 You can play with the live demo below:
 
@@ -22,19 +22,19 @@ We chose a ToDo app for the tutorial, because it covers all of the basic concept
 
 The tutorial consists of the following steps:
 
-* [Getting started with Pglet](#getting-started-with-flet)
-* [Pglet app structure](#flet-app-structure)
+* [Getting started with Flet](#getting-started-with-flet)
+* [Flet app structure](#flet-app-structure)
 * [Adding page controls and handling events](#adding-page-controls-and-handling-events)
 * [View, edit and delete list items](#view-edit-and-delete-list-items)
 * [Filtering list items](#filtering-list-items)
 * [Final touches](#final-touches)
 * [Deploying the app](#deploying-the-app)
 
-## Getting started with Pglet
+## Getting started with Flet
 
-To write a Pglet web app you don't need to know HTML, CSS or JavaScript, but you do need a basic knowledge of Python and object-oriented programming.
+To write a Flet web app you don't need to know HTML, CSS or JavaScript, but you do need a basic knowledge of Python and object-oriented programming.
 
-Pglet requires Python 3.7 or above. To create a web app in Python with Pglet, you need to install `flet` module first:
+Flet requires Python 3.7 or above. To create a web app in Python with Flet, you need to install `flet` module first:
 
 ```bash
 pip install flet
@@ -60,9 +60,9 @@ Run this app and you will see a new browser window with a greeting:
 In this example, the page URL is a random string, because we didn't specify it in `flet.page()` call. Try changing it to `flet.page('hello')`.
 :::
 
-## Pglet app structure
+## Flet app structure
 
-In the [previous step](#getting-started-with-flet), we learned how to create a simple Pglet page. On that page, all users work with the same contents ("**shared app**").
+In the [previous step](#getting-started-with-flet), we learned how to create a simple Flet page. On that page, all users work with the same contents ("**shared app**").
 
 :::note
 
@@ -94,7 +94,7 @@ def main(page):
 flet.app("hello-app", target=main)
 ```
 
-While the application is running, for every new user session Pglet calls `main` function with unique page contents.
+While the application is running, for every new user session Flet calls `main` function with unique page contents.
 
 :::note
 To see multiple sessions in action, open the application URL in a new "incognito" browser window.
@@ -469,14 +469,14 @@ Run the app:
 
 ## Deploying the app
 
-Congratulations! You have created your first Python web app with Pglet, and it looks awesome!
+Congratulations! You have created your first Python web app with Flet, and it looks awesome!
 
 Now it's time to share your app with the world!
 
 ### Instant sharing
 
-Pglet is not only a framework for building web apps, but it is also a service for hosting apps' UI.
-You can have the application running on your computer while its UI is streaming to Pglet service in real-time.
+Flet is not only a framework for building web apps, but it is also a service for hosting apps' UI.
+You can have the application running on your computer while its UI is streaming to Flet service in real-time.
 
 To make the app instantly available on the Internet, just add `web=True` parameter to `flet.app()` call at the very end of the program:
 
@@ -493,9 +493,9 @@ https://app.flet.dev/public/{random}
 ```
 
 :::note
-[Pglet Service](/docs/pglet-service) is in technical preview now and you are sharing the app in a public namespace.
+[Flet Service](/docs/pglet-service) is in technical preview now and you are sharing the app in a public namespace.
 
-Please note that we have removed the name of the page from the call above, so it's generated randomly to avoid name collision on public Pglet service with other users.
+Please note that we have removed the name of the page from the call above, so it's generated randomly to avoid name collision on public Flet service with other users.
 :::
 
 ### Replit
@@ -531,7 +531,7 @@ In this tutorial you have learned how to:
 * Work with Reusable UI components;
 * Design UI layout using `Stack` control;
 * Work with lists: view, edit and delete items, filtering;
-* Deploy your app two ways: Pglet Service and Replit;
+* Deploy your app two ways: Flet Service and Replit;
 
 For further reading you can explore [controls](/docs/controls) and [examples repository](https://github.com/pglet/examples/tree/main/python).
 

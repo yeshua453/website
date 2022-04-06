@@ -1,9 +1,9 @@
 export function fromTemplate(data) {
-  return `Pglet <hello@flet.dev>`
+  return `Flet <hello@flet.dev>`
 }
 
 export function subjectTemplate(data) {
-  return `Confirm your subscription to Pglet mailing list`
+  return `Confirm your subscription to Flet mailing list`
 }
 
 export function bodyTemplate(data) {
@@ -22,7 +22,7 @@ export function bodyTemplate(data) {
       </head>
       <body>
         <p>
-            <a href="${data.confirmUrl}">Click here to confirm</a> your subscription to Pglet project mailing list!
+            <a href="${data.confirmUrl}">Click here to confirm</a> your subscription to Flet project mailing list!
         </p>
         <p>
             If you didn't subscribe to this list or you're not sure why you received this email, you can delete it. You will not be subscribed if you don't click on the link above.

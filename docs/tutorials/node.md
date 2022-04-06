@@ -20,13 +20,13 @@ npm install flet
 
 ## Creating a page
 
-Pglet allows you creating **shared** and **app** pages.
+Flet allows you creating **shared** and **app** pages.
 
 **Shared page** is like a singleton: many programs can connect and author the same page and all web users connecting to a page see and interact with the same content. Shared pages are useful for developing local tools, web dashboards, progress reports, distributed processes visualization, etc. 
 
 **App page** creates for each web user a new session with its own content. In your program you define a "handler" method which is invoked for every new session. App pages are used for creating multi-user web apps.
 
-OK, this is a minimal "Hello world" Pglet page running in a local mode:
+OK, this is a minimal "Hello world" Flet page running in a local mode:
 
 ```javascript title="hello.js"
 const flet = require("flet");
@@ -52,7 +52,7 @@ await p.send("add text value='Hello, world!'");
 
 ## Getting user input
 
-Pglet provides a number of controls for building forms: [Textbox](/docs/controls/textbox), [Checkbox](/docs/controls/checkbox), [Dropdown](/docs/controls/dropdown), [Button](/docs/controls/button).
+Flet provides a number of controls for building forms: [Textbox](/docs/controls/textbox), [Checkbox](/docs/controls/checkbox), [Dropdown](/docs/controls/dropdown), [Button](/docs/controls/button).
 
 Let's ask a user for a name:
 
@@ -70,7 +70,7 @@ const flet = require("flet");
 
 When you click "Say hello" button on the form above nothing will happen in our program though `Button` control itself emits "click" event each time it's pressed/clicked. The event is just not handled.
 
-In Node.js Pglet app you use event loop to handle control events.
+In Node.js Flet app you use event loop to handle control events.
 
 ### Event loop
 
@@ -102,9 +102,9 @@ Notice how IDs of the added textbox and button are saved, so we can refer to the
 
 ## Multi-user apps
 
-In multi-user Pglet apps every user has a unique session with its own page contents. To start an app page you use `flet.app()` method which takes a reference to a session handler function. The handler function is called for every new user connected with connection object in parameters. The program stays blocked on `flet.app()` while constantly waiting for new user connections.
+In multi-user Flet apps every user has a unique session with its own page contents. To start an app page you use `flet.app()` method which takes a reference to a session handler function. The handler function is called for every new user connected with connection object in parameters. The program stays blocked on `flet.app()` while constantly waiting for new user connections.
 
-This could be a minimal Pglet multi-user app in Node.js:
+This could be a minimal Flet multi-user app in Node.js:
 
 ```javascript title="hello-app.js"
 const flet = require("flet");
@@ -167,7 +167,7 @@ Parameters:
 * `options` - app creation options object with the following properties:
   * `web` (bool) - make app UI available on the web.
   * `noWindow` (bool) - do not open browser window.
-  * `server` (string) - URL of the self-hosted Pglet server to run the app on.
+  * `server` (string) - URL of the self-hosted Flet server to run the app on.
   * `token` (string) - authentication token for self-hosted server.
 
 ### `app` function
@@ -183,7 +183,7 @@ Parameters:
 * `options` - app creation options object with the following properties:
   * `web` (bool) - make app UI available on the web.
   * `noWindow` (bool) - do not open browser window.
-  * `server` (string) - URL of the self-hosted Pglet server to run the app on.
+  * `server` (string) - URL of the self-hosted Flet server to run the app on.
   * `token` (string) - authentication token for self-hosted server.
 * `sessionCallback` - callback function for handling a session. [Connection](#connection-class) is passed as an argument.
 
@@ -193,7 +193,7 @@ Represents a connection to a page or session. `Connection` provides methods for 
 
 #### `send(command)`
 
-Sends a raw command to Pglet server via [Pglet protocol](/docs/reference/protocol).
+Sends a raw command to Flet server via [Flet protocol](/docs/reference/protocol).
 
 For example, to update `errorMessage` property of textbox with ID `number`:
 

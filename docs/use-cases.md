@@ -1,5 +1,5 @@
 ---
-title: Pglet use cases
+title: Flet use cases
 sidebar_label: Use cases
 slug: use-cases
 ---

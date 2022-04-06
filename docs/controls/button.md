@@ -192,7 +192,7 @@ import flet
 from flet import Button
 with flet.page("link-buttons") as page:
   page.add(
-    Button(action=True, icon='Globe', text='Pglet website',url='https://flet.dev', new_window=True),
+    Button(action=True, icon='Globe', text='Flet website',url='https://flet.dev', new_window=True),
     Button(icon='MyMoviesTV', text='Go to Disney', url='https://disney.com', new_window=True))
 ```
 
@@ -237,7 +237,7 @@ with flet.page("context-menu-buttons") as page:
         ])
       ]),
       button.MenuItem(divider=True),
-      button.MenuItem(text='To Pglet', icon='Globe', icon_color='green', url='https://flet.dev', new_window=True, secondary_text='New Window')
+      button.MenuItem(text='To Flet', icon='Globe', icon_color='green', url='https://flet.dev', new_window=True, secondary_text='New Window')
     ]),
   ]))
 ```

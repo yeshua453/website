@@ -4,7 +4,7 @@ sidebar_label: Overview
 slug: /controls
 ---
 
-Pglet UI is built of controls. Most controls are composed from multiple HTML elements, have finished functionality and sane defaults to make UI development as quick and pleasant as possible. For example, [Textbox](controls/textbox) control is not just `<input type="text">` in terms of HTML, but it has an attached label, description, validation message and a help tip.
+Flet UI is built of controls. Most controls are composed from multiple HTML elements, have finished functionality and sane defaults to make UI development as quick and pleasant as possible. For example, [Textbox](controls/textbox) control is not just `<input type="text">` in terms of HTML, but it has an attached label, description, validation message and a help tip.
 
 Controls are organized into hierarchy, or a tree, where each control has a parent (except [Page](controls/page)) and container controls like [Stack](controls/stack), [Dropdown](controls/dropdown) can contain child controls, for example:
 
@@ -28,7 +28,7 @@ User-defined IDs can contain alphanumerics (`A-Za-z0-9`), dash (`-`) and undersc
 
 ### Unique ID
 
-To guarantee the uniqueness of user-defined IDs across the page Pglet automatically prefixes them with parent ID when adding control to a page. Only user-defined IDs will be used as parts of unique ID.
+To guarantee the uniqueness of user-defined IDs across the page Flet automatically prefixes them with parent ID when adding control to a page. Only user-defined IDs will be used as parts of unique ID.
 
 For example, you may want to add a [Button](controls/button) with `id=ok` into two stacks: one with an auto-generated ID `_1` and another one with user-defined `id=footer`:
 
@@ -44,7 +44,7 @@ Once controls added to a page the ID of a second button will be prefixed with `f
 
 ## Common properties
 
-All Pglet controls have the following properties:
+All Flet controls have the following properties:
 
 | Name       | Type      | Default       | Description |
 | ---------- | --------- | ------------- | ----------- |

@@ -4,9 +4,9 @@ sidebar_label: Hot reload
 slug: hot-reload
 ---
 
-In this How-To we are going to show how to speed up the development of Pglet Python apps with hot reload tool.
+In this How-To we are going to show how to speed up the development of Flet Python apps with hot reload tool.
 
-Pglet app consists of one or more `.py` files in app directory. It normally runs as any other Python app with `python your-app.py`. When any of `.py` files change, the application must be restarted. While you do a lot of small changes working to perfect your Pglet UI, those constant restarts could become very annoying.
+Flet app consists of one or more `.py` files in app directory. It normally runs as any other Python app with `python your-app.py`. When any of `.py` files change, the application must be restarted. While you do a lot of small changes working to perfect your Flet UI, those constant restarts could become very annoying.
 
 [**watchexec**](https://github.com/watchexec/watchexec) is a simple, standalone tool that watches a path and runs a command whenever it detects modifications.
 
@@ -32,7 +32,7 @@ watchexec -r -e py -- python your-app.py
 
 Once the app is restarted just hit refresh in your browser to reload it.
 
-You also need to modify your Pglet app and set an application name to run on a permanent URL and disable browser opening on the start:
+You also need to modify your Flet app and set an application name to run on a permanent URL and disable browser opening on the start:
 
 ```python
 flet.app("my-app", target=main, no_window=True)
