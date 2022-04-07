@@ -60,7 +60,7 @@ export default function SignupForm() {
                             />
                             <input type="submit" value="Submit" />
                             <HCaptcha
-                                sitekey="450cf388-4fd0-4485-a786-dd0129a596ed"
+                                sitekey="db49a301-288d-491b-9746-ebd3354dc5ff"
                                 size="invisible"
                                 onVerify={setToken}
                                 onError={onError}
