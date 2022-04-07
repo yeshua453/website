@@ -1,7 +1,7 @@
 ---
-title: Message
-sidebar_label: Message
-slug: message
+title: Banner
+sidebar_label: Banner
+slug: banner
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

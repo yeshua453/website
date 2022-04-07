@@ -1,7 +1,7 @@
 ---
-title: Toggle
-sidebar_label: Toggle
-slug: toggle
+title: Switch
+sidebar_label: Switch
+slug: switch
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

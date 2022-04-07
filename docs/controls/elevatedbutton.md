@@ -1,7 +1,7 @@
 ---
-title: Button
-sidebar_label: Button
-slug: button
+title: ElevatedButton
+sidebar_label: ElevatedButton
+slug: elevatedbutton
 ---
 
 import Tabs from '@theme/Tabs';

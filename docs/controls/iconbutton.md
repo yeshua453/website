@@ -1,7 +1,7 @@
 ---
-title: Stack
-sidebar_label: Stack
-slug: stack
+title: IconButton
+sidebar_label: IconButton
+slug: iconbutton
 ---
 
 import Tabs from '@theme/Tabs';

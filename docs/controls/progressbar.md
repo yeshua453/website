@@ -1,7 +1,7 @@
 ---
-title: Progress
-sidebar_label: Progress
-slug: progress
+title: ProgressBar
+sidebar_label: ProgressBar
+slug: progressbar
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

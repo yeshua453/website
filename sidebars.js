@@ -13,86 +13,56 @@ module.exports = {
       ],
       'Controls': [
         'controls/overview',
+        'controls/page',
         {
           'Layout': [
-            'controls/page',
+            'controls/container',
+            'controls/row',
+            'controls/column',
             'controls/stack',
-            'controls/splitstack',
+            'controls/listview',
+            'controls/gridview',
           ]
         },
         {
-          'Basic input': [
-            'controls/button',
-            'controls/checkbox',
-            'controls/choicegroup',
-            'controls/dropdown',
-            'controls/combobox',
-            'controls/datepicker',
-            'controls/link',
-            'controls/searchbox',
-            'controls/slider',
-            'controls/spinbutton',
-            'controls/textbox',
-            'controls/toggle',
-          ]
-        },
-        {
-          'Collections': [
-            'controls/grid',
-          ]
-        },
-        {
-          'Media': [
+          'Basic controls': [
+            'controls/text',
             'controls/icon',
             'controls/image',
+            'controls/progressbar',
+            'controls/progressring',
           ]
         },
         {
-          'Navigation': [
-            'controls/nav',
-            'controls/tabs',
+          'Buttons': [
+            'controls/elevatedbutton',
+            'controls/iconbutton',
+            'controls/outlinedbutton',
+            'controls/textbutton',
           ]
         },
         {
-          'Status and Info': [
-            'controls/message',
-            'controls/progress',
-            'controls/spinner',
+          'Input and selections': [
+            'controls/checkbox',
+            'controls/dropdown',
+            'controls/radio',
+            'controls/slider',
+            'controls/switch',
+            'controls/textfield',
           ]
         },
         {
-          'Toolbars': [
-            'controls/toolbar',
+          'Dialogs, alerts and panels': [
+            'controls/banner',
+            'controls/snackbar',
+            'controls/alertdialog',
           ]
-        },
-        {
-          'Dialogs and Flyouts': [
-            'controls/callout',
-            'controls/dialog',
-            'controls/panel',
-          ]
-        },
-        {
-          'Charts': [
-            'controls/line-chart',
-            'controls/pie-chart',
-            'controls/vertical-bar-chart',
-            'controls/bar-chart',
-          ]
-        },
-        {
-          'Utilities': [
-            'controls/html',
-            'controls/iframe',
-            'controls/persona',
-            'controls/text',
-          ]
-        },
+        }
       ],
-      'Guides': [
-        'hot-reload',
-        //'theming',
-        //'deployment',
-      ],
+      // 'Guides': [
+      //   'hot-reload',
+      //   //'theming',
+      //   //'deployment',
+      // ],
     }],
 };

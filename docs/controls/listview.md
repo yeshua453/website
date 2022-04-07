@@ -1,7 +1,7 @@
 ---
-title: Stack
-sidebar_label: Stack
-slug: stack
+title: ListView
+sidebar_label: ListView
+slug: listview
 ---
 
 import Tabs from '@theme/Tabs';

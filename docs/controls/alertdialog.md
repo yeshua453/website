@@ -1,7 +1,7 @@
 ---
-title: Stack
-sidebar_label: Stack
-slug: stack
+title: AlertDialog
+sidebar_label: AlertDialog
+slug: alertdialog
 ---
 
 import Tabs from '@theme/Tabs';

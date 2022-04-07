@@ -1,7 +1,7 @@
 ---
-title: Stack
-sidebar_label: Stack
-slug: stack
+title: OutlinedButton
+sidebar_label: OutlinedButton
+slug: outlinedbutton
 ---
 
 import Tabs from '@theme/Tabs';

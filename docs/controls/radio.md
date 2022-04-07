@@ -1,7 +1,7 @@
 ---
-title: ChoiceGroup
-sidebar_label: ChoiceGroup
-slug: choicegroup
+title: Radio
+sidebar_label: Radio
+slug: radio
 ---
 
 import Tabs from '@theme/Tabs';

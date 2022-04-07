@@ -1,7 +1,7 @@
 ---
-title: Stack
-sidebar_label: Stack
-slug: stack
+title: Column
+sidebar_label: Column
+slug: column
 ---
 
 import Tabs from '@theme/Tabs';

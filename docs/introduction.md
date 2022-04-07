@@ -4,6 +4,9 @@ title: Introduction
 slug: /
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## What is Flet
 
 Flet is a rich user interface (UI) framework for scripts and programs written in any language and a service for securely sharing your application UI. [Python](/docs/tutorials/python) is already supported and other languages are going to be added soon.
@@ -12,16 +15,8 @@ Flet renders web UI, so you can easily build web apps with your favorite languag
 
 ## Hello, world!
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="languages" defaultValue="python" values={[
-  { label: 'Python', value: 'python', },
-  { label: 'PowerShell', value: 'powershell', },
-  { label: 'Node.js', value: 'node', },
-]}>
-
-<TabItem value="python">
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
 
 Install `flet` module:
 
@@ -43,56 +38,7 @@ Run `hello.py` with Python 3 and in a new browser window you'll get:
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
 
-</TabItem>
-
-<TabItem value="powershell">
-
-Install `flet` module:
-
-```powershell
-Install-Module flet
-```
-
-Create `hello.ps1` with the following contents:
-
-```powershell title="hello.ps1"
-Import-Module flet
-
-$page = Connect-FletPage
-$page.add((Text 'Hello, world!'))
-```
-
-Run `hello.ps1` in a PowerShell session and in a new browser window you'll get:
-
-<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
-
-</TabItem>
-
-<TabItem value="node">
-
-Install `flet` module:
-
-```bash
-npm install flet
-```
-
-Create `hello.js` with the following contents:
-
-```javascript title="hello.js"
-const flet = require("flet");
-
-(async () => {
-    let p = await flet.page();
-    await p.send("add text value='Hello, world!'");
-})();
-```
-
-Run `node hello.js` and in a new browser window you'll get:
-
-<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
-
-</TabItem>
-
+  </TabItem>
 </Tabs>
 
 ## Tutorials

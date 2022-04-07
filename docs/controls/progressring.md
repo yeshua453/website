@@ -1,7 +1,7 @@
 ---
-title: Spinner
-sidebar_label: Spinner
-slug: spinner
+title: ProgressRing
+sidebar_label: ProgressRing
+slug: progressring
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -1,7 +1,7 @@
 ---
-title: Textbox
-sidebar_label: Textbox
-slug: textbox
+title: TextField
+sidebar_label: TextField
+slug: textfield
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

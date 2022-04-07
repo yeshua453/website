@@ -1,7 +1,7 @@
 ---
-title: Stack
-sidebar_label: Stack
-slug: stack
+title: GridView
+sidebar_label: GridView
+slug: gridview
 ---
 
 import Tabs from '@theme/Tabs';
