@@ -7,369 +7,159 @@ slug: elevatedbutton
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+Use elevated buttons to add dimension to otherwise mostly flat layouts, e.g. in long busy lists of content, or in wide spaces. Avoid using elevated buttons on already-elevated content such as dialogs or cards.
+
 ## Examples
 
-[Live demo](https://python-button-example.pgletio.repl.co)
-
-### Basic buttons
+### Basic elevated buttons
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
-from flet import Button
-with flet.page("basic-buttons") as page:
-  page.add(
-    Button("Standard"),
-    Button("Standard disabled", disabled=True),
-    Button("Primary", primary=True),
-    Button("Primary disabled", primary=True, disabled=True))
+from flet import ElevatedButton, Page
+
+def main(page: Page):
+    page.title = "Basic elevated buttons"
+    page.add(
+        ElevatedButton(text="Elevated button"),
+        ElevatedButton("Disabled button", disabled=True),
+    )
+
+flet.app(target=main)
 ```
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
 
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/button/basic-buttons.png" width="25%" />
+<img src="/img/docs/controls/elevated-button/basic-elevated-buttons.png" width="40%" />
 
-### Button with `click` event
+### Elevated buttons with icons
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
-from flet import Button, Text
+from flet import ElevatedButton, Icon, Page, Row
 
-with flet.page("button-with-click-event") as page:
-   
+
+def main(page: Page):
+    page.title = "Elevated buttons with icons"
+    page.add(
+        ElevatedButton("Button with icon", icon="chair_outlined"),
+        ElevatedButton(
+            "Button with colorful icon",
+            icon="park_rounded",
+            icon_color="green400",
+        ),
+    )
+
+flet.app(target=main)
+```
+  </TabItem>
+
+</Tabs>
+
+<img src="/img/docs/controls/elevated-button/elevated-buttons-with-icons.png" width="50%" />
+
+### Elevated button with `click` event
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import ElevatedButton, Page, Text
+
+def main(page: Page):
+    page.title = "Elevated button with 'click' event"
+
     def button_clicked(e):
         b.data += 1
         t.value = f"Button clicked {b.data} time(s)"
         page.update()
 
-    b = Button("Button with 'click' event", on_click=button_clicked, title='Click me!', data=0)
+    b = ElevatedButton("Button with 'click' event", on_click=button_clicked, data=0)
     t = Text()
 
     page.add(b, t)
 
-    input()
+flet.app(target=main)
 ```
 
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
 
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/button/button-with-click-event.gif" width="50%" />
+<img src="/img/docs/controls/elevated-button/elevated-button-with-click-event.gif" width="50%" />
 
-### Compound buttons
+### Elevated button with custom content 
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
-from flet import Button
-with flet.page("compound-buttons") as page:
+from flet import Column, Container, ElevatedButton, Icon, Page, Row, Text, padding
+
+def main(page: Page):
+    page.title = "Elevated buttons with custom content"
     page.add(
-      Button("Compound", secondary_text='This is a secondary text', compound=True),
-      Button("Primary compound", secondary_text='This is a secondary text', compound=True, primary=True))
+        ElevatedButton(
+            width=150,
+            content=Row(
+                [
+                    Icon(name="favorite", color="pink"),
+                    Icon(name="audiotrack", color="green"),
+                    Icon(name="beach_access", color="blue"),
+                ],
+                alignment="spaceAround",
+            ),
+        ),
+        ElevatedButton(
+            content=Container(
+                content=Column(
+                    [
+                        Text(value="Compound button", size=20),
+                        Text(value="This is secondary text"),
+                    ],
+                    alignment="center",
+                    spacing=5,
+                ),
+                padding=padding.all(10),
+            ),
+        ),
+    )
+
+
+flet.app(target=main)
+
 ```
 
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
+  
 </Tabs>
 
-<img src="/img/docs/controls/button/compound-buttons.png" width="25%" />
+<img src="/img/docs/controls/elevated-button/elevated-buttons-with-custom-content.png" width="40%" />
 
-### Buttons with icons
 
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
 
-```python
-import flet
-from flet import Button
-with flet.page("buttons-with-icons") as page:
-    page.add(
-      Button("Create account", icon='AddFriend', primary=True),
-      Button("New item", icon='Add'),
-      Button("Delete", icon='Delete'))
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/button/buttons-with-icons.png" width="25%" />
-
-### Icon only buttons
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Button
-with flet.page("icon-only-buttons") as page:
-  page.add(
-    Button(icon='Emoji2', title='Emoji!'),
-    Button(icon='Calendar', title='Calendar!'))
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/button/icon-only-buttons.png" width="5%" />
-
-### Toolbar buttons
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Button, Stack
-with flet.page("toolbar-buttons") as page:
-    page.add(Stack(horizontal=True, controls=[
-      Button(text="New item", toolbar=True, icon='Add'),
-      Button(text="Send", toolbar=True, icon='Mail'),
-      Button(text="Show example", toolbar=True, icon='ChevronDown'),
-      Button(text="Delete", toolbar=True, icon_color='red', icon='Delete')
-    ]))
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/button/toolbar-buttons.png" width="50%" />
-
-### Link buttons
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Button
-with flet.page("link-buttons") as page:
-  page.add(
-    Button(action=True, icon='Globe', text='Flet website',url='https://flet.dev', new_window=True),
-    Button(icon='MyMoviesTV', text='Go to Disney', url='https://disney.com', new_window=True))
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/button/link-buttons.png" width="25%" />
-
-### Context menu buttons
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Button, Stack, button
-with flet.page("context-menu-buttons") as page:
-  page.add(Stack(horizontal=True, controls=[
-    Button(icon='Add', text='New item', menu_items=[
-      button.MenuItem(text='Email message', icon='Mail'),
-      button.MenuItem(text='Calendar event', icon='Calendar')
-    ]),
-    Button(text='Button with sub-menus', menu_items=[
-      button.MenuItem(text='New', icon='Add', sub_menu_items=[
-      button.MenuItem(text='Email message', icon='Mail'),
-      button.MenuItem(text='Calendar event', icon='Calendar')
-    ]),
-      button.MenuItem(text='Share', icon='Share', split=True, sub_menu_items=[
-        button.MenuItem(text='Share to Twitter'),
-        button.MenuItem(text='Share to Facebook'),
-        button.MenuItem('Share to Somewhere'),
-        button.MenuItem('Share to email', sub_menu_items=[
-          button.MenuItem('Share to Outlook'),
-          button.MenuItem('Share to Gmail')
-        ])
-      ]),
-      button.MenuItem(divider=True),
-      button.MenuItem(text='To Flet', icon='Globe', icon_color='green', url='https://flet.dev', new_window=True, secondary_text='New Window')
-    ]),
-  ]))
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/button/context-menu-buttons.png" width="75%" />
-
-### Split buttons
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Button, Stack, button
-with flet.page("split-buttons") as page:
-  page.add(Stack(horizontal=True, controls=[
-    Button(split=True, text='Standard', menu_items=[
-      button.MenuItem('Email message', icon='Mail'),
-      button.MenuItem('Calendar event', icon='Calendar')
-    ]),
-    Button(split=True, primary=True, text='Primary', menu_items=[
-      button.MenuItem('Email message', icon='Mail'),
-      button.MenuItem('Calendar event', icon='Calendar')
-    ])
-  ]))
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/button/split-buttons.png" width="30%" />
-
-### Action buttons
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Button, Stack
-with flet.page("action-button") as page:
-  page.add(Stack(horizontal=True, controls=[
-    Button(action=True, icon='AddFriend', text='Create account')
-  ]))
-```
-
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/button/action-button.png" width="25%" />
 
 ## Properties
 
 | Name           | Type   | Default | Description |
 | -------------- | ------ | ------- | ----------- |
-| `primary`      | bool   | `false` | The button with a theme color background. Usually, there is only one primary button on a form. |
-| `compound`     | bool   | `false` | Render compound button with primary and `secondaryText` on a second line. |
-| `action`       | bool   | `false` | Render button as a link without a border. |
-| `toolbar`      | bool   | `false` | Render toolbar-like button. |
-| `split`        | bool   | `false` | If set to `true`, and if menu items are provided, the button will render as a SplitButton. |
-| `focused`      | bool   | `false` | When set to `true` the focus is set on the control when it's shown on the page or page opened. |
 | `text`         | string |         | The text displayed on a button. |
-| `secondaryText` | string |        | Description of the action this button takes. Only used for compound buttons. |
-| `url`          | string |         | If provided, the button will be rendered as a link. |
-| `newWindow`    | bool   | `false` | Whether to open link in a new browser window. |
-| `title`        | string |         | Popup hint for the button. |
 | `icon`         | string |         | Icon shown in the button. |
 | `iconColor`    | string |         | Icon color. |
-| `data`         | string |         | Additional data attached to the control. The value is passed in `click` event data. |
+| `content`      | Control|         | a Control representing custom button content. |
 
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
 | `click`   | Fires when a user clicks the button.  |
-| `focus`   | Fires when the control has received focus. |
-| `blur`    | Fires when the control has lost focus. |
-
-## Child controls
-
-* [`Item`](#item-control)
-
-## `Item` control
-
-Represents a menu item within a context menu button.
-
-### Properties
-
-| Name            | Type   | Default | Description |
-| --------------- | ------ | ------- | ----------- |
-| `text`          | string |         | Text of the menu item. If a standard hyphen (-) is passed in, then the item will be rendered as a divider. If a dash must appear as text, use an emdash (—), figuredash (‒), or minus symbol (−) instead. |
-| `secondaryText` | string |         | Seconday description for the menu item to display. |
-| `url`           | string |         | URL to navigate to for this menu item. |
-| `newWindow`     | bool   | `false` | Whether to open link in a new browser window. |
-| `icon`          | string |         | An optional icon to display next to the item. |
-| `iconColor`     | string |         | Icon color. |
-| `iconOnly`      | bool   | `false` | Show only an icon for this item, not text. Does not apply if item is in the overflow. |
-| `split`         | bool   | `false` | Whether or not this menu item is a SplitButton. |
-| `divider`       | bool   | `false` | Display menu item as a divider. |
-
-### Events
-
-| Name      | Description |
-| --------- | ----------- |
-| `click`   | Fires when menu item is invoked. |
-
-### Child controls
-
-`Item` control can contain other `item` controls to add nested menu items.
-
-* [`Item`](#item-control)
+| `focus`   | TBD. |
+| `blur`    | TBD. |
