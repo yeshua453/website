@@ -23,6 +23,10 @@ html[data-theme='dark'] .bkg {
   padding: 3rem 5rem 0 0;
 }
 
+/* pre {
+  font-size: 12px;
+} */
+
 @media screen and (max-width: 768px) {
   .heroBanner {
     padding: 1rem;

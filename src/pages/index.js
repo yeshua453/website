@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import SignupForm from '@site/src/components/signup-form'
+import CodeBlock from '@theme/CodeBlock';
 
 const features = [
   {
@@ -79,6 +80,40 @@ function Home() {
         </header>
       </div>
       <main>
+        <div className='container' style={{ width: '70%', margin: '2rem auto' }}>
+          <div className="row">
+            <div className="col col--7">
+              <h3>Write your program in</h3>
+              <Tabs>
+                <TabItem value="python" label="Python" default>
+                  <CodeBlock className="language-python">
+                    {"import flet\nfrom flet import IconButton, Page, Row, TextField, icons\n\ndef main(page: Page):\n    page.title = \"Flet counter example\"\n    page.vertical_alignment = \"center\"\n\n    txt_number = TextField(value=\"0\", text_align=\"right\", width=100)\n\n    def minus_click(e):\n        txt_number.value = int(txt_number.value) - 1\n        page.update()\n\n    def add_click(e):\n        txt_number.value = int(txt_number.value) + 1\n        page.update()\n\n    page.add(\n        Row([\n          IconButton(icons.REMOVE, on_click=minus_click),\n          txt_number,\n          IconButton(icons.ADD, on_click=add_click),\n        ], alignment=\"center\"))\n\nflet.app(target=main)"}
+                  </CodeBlock>
+                </TabItem>
+              </Tabs>
+            </div>
+            <div className="col col--5">
+              <h3>...and run on</h3>
+              <Tabs>
+                <TabItem value="web" label="Web" default>
+                  This is an apple 🍎
+                </TabItem>
+                <TabItem value="windows" label="Windows">
+                  This is an orange 🍊
+                </TabItem>
+                <TabItem value="macos" label="macOS">
+                  This is a banana 🍌
+                </TabItem>
+                <TabItem value="ios" label="iOS">
+                  Coming soon!
+                </TabItem>
+                <TabItem value="android" label="Android">
+                  Coming soon!
+                </TabItem>
+              </Tabs>
+            </div>
+          </div>
+        </div>
         <SignupForm />
         {features && features.length > 0 && (
           <section className={styles.features}>
@@ -91,17 +126,6 @@ function Home() {
             </div>
           </section>
         )}
-        {/* <Tabs>
-          <TabItem value="apple" label="Apple" default>
-            This is an apple 🍎
-          </TabItem>
-          <TabItem value="orange" label="Orange">
-            This is an orange 🍊
-          </TabItem>
-          <TabItem value="banana" label="Banana">
-            This is a banana 🍌
-          </TabItem>
-        </Tabs> */}
       </main>
     </Layout>
   );
