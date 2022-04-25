@@ -65,16 +65,14 @@ function Home() {
         <header className={clsx('flet-hero', styles.heroBanner)}>
           <div className="row">
             <div className="col">
-              <div className={styles.right}>
-                <h1 className="hero__title">{siteConfig.customFields.heroTitle}</h1>
-                <p className="hero__subtitle">{siteConfig.customFields.heroSubTitle}</p>
-                <div className={styles.buttons}>
-                  <Link
-                    className={styles.indexCtasGetStartedButton}
-                    to={useBaseUrl('docs/')}>
-                    Get Started
-                  </Link>
-                </div>
+              <h1 className="hero__title">{siteConfig.customFields.heroTitle}</h1>
+              <p className="hero__subtitle">{siteConfig.customFields.heroSubTitle}</p>
+              <div className={styles.buttons}>
+                <Link
+                  className={styles.indexCtasGetStartedButton}
+                  to={useBaseUrl('docs/')}>
+                  Get Started
+                </Link>
               </div>
             </div>
           </div>
