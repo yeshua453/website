@@ -9,9 +9,9 @@ import TabItem from '@theme/TabItem';
 
 ## What is Flet
 
-Flet is a rich user interface (UI) framework for scripts and programs written in any language and a service for securely sharing your application UI. [Python](/docs/tutorials/python) is already supported and other languages are going to be added soon.
+Flet is a framework that allows building interactive multi-user cross-platform applications in your favorite language without prior experience with frontend development. [Python](/docs/tutorials/python) is already supported and other languages are going to be added soon.
 
-Flet renders web UI, so you can easily build web apps with your favorite language. Knowledge of HTML/CSS/JavaScript is not required as you build UI with [controls](/docs/controls). Flet controls are built with [Fluent UI React](https://developer.microsoft.com/en-us/fluentui#/controls/web) to ensure your programs look cool and professional.
+You build a UI for your program with Flet [controls](/docs/controls) which are based on [Flutter](https://flutter.dev) by Google. Flet does not just "wrap" Flutter widgets, but adds its own "opinion" by combining smaller widgets, hiding complexities, implementing UI best-practices, applying reasonable defaults - all to ensure your apps look cool and professional without much efforts.
 
 ## Hello, world!
 
