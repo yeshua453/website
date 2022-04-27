@@ -3,14 +3,15 @@ module.exports = {
     {
       'Getting started': [
         'introduction',
+        'getting-started/python',
         // 'layout',
         // 'theming',
       ],
-      'Tutorials': [
-        'tutorials/python',
-        // 'tutorials/powershell',
-        // 'tutorials/node',
-      ],
+      // 'Tutorials': [
+      //   'getting-started/python',
+      //   // 'tutorials/powershell',
+      //   // 'tutorials/node',
+      // ],
       'Controls': [
         'controls/overview',
         'controls/page',
