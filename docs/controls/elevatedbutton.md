@@ -102,7 +102,18 @@ flet.app(target=main)
 
 ```python
 import flet
-from flet import Column, Container, ElevatedButton, Icon, Page, Row, Text, padding
+from flet import (
+    Column,
+    Container,
+    ElevatedButton,
+    Icon,
+    Page,
+    Row,
+    Text,
+    icons,
+    padding,
+)
+
 
 def main(page: Page):
     page.title = "Elevated buttons with custom content"
@@ -111,9 +122,9 @@ def main(page: Page):
             width=150,
             content=Row(
                 [
-                    Icon(name="favorite", color="pink"),
-                    Icon(name="audiotrack", color="green"),
-                    Icon(name="beach_access", color="blue"),
+                    Icon(name=icons.FAVORITE, color="pink"),
+                    Icon(name=icons.AUDIOTRACK, color="green"),
+                    Icon(name=icons.BEACH_ACCESS, color="blue"),
                 ],
                 alignment="spaceAround",
             ),
