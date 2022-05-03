@@ -68,7 +68,7 @@ module.exports = {
             },
             {
               label: 'Python tutorial',
-              to: 'docs/tutorials/python/',
+              to: 'docs/getting-started/python/',
             },
             {
               label: 'Controls reference',

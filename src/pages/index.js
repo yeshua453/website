@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import SignupForm from '@site/src/components/signup-form'
+import CodeBlock from '@theme/CodeBlock';
 
 const features = [
   {
@@ -15,7 +16,7 @@ const features = [
     imageUrl: 'img/home-languages.svg',
     description: (
       <>
-        Add rich interactive web UI to your backend apps, scripts, jobs written in <a href="/docs/tutorials/python">Python</a>, <a href="/docs/tutorials/bash">Bash</a>, <a href="/docs/tutorials/powershell">PowerShell</a> or <a href="/docs/tutorials/node">Node.js</a>.
+        Add rich interactive web UI to your backend apps, scripts, jobs written in <a href="/docs/getting-started/python">Python</a>, <a href="/docs/tutorials/bash">Bash</a>, <a href="/docs/tutorials/powershell">PowerShell</a> or <a href="/docs/tutorials/node">Node.js</a>.
       </>
     ),
   },
@@ -61,11 +62,32 @@ function Home() {
     <Layout
       title={`${siteConfig.customFields.heroTitle}`}
       description={`${siteConfig.tagline}`}>
-      <div className="container">
+      {/* <div className="container">
         <header className={clsx('flet-hero', styles.heroBanner)}>
           <div className="row">
             <div className="col">
-              <div className={styles.right}>
+              <h1 className="hero__title">{siteConfig.customFields.heroTitle}</h1>
+              <p className="hero__subtitle">{siteConfig.customFields.heroSubTitle}</p>
+              <div className={styles.buttons}>
+                <Link
+                  className={styles.indexCtasGetStartedButton}
+                  to={useBaseUrl('docs/')}>
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div> */}
+      <main>
+        <div className="container">
+          <div className={clsx('flet-hero', styles.heroBanner)}>
+            <div className="row">
+              <div className="col  col--6">
+                {/* <h2>It's amazing how little code you need to get amazing results!</h2> */}
+                <img src="img/pages/home/flet-home.png" style={{ width: '100%' }}></img>
+              </div>
+              <div className="col col--6">
                 <h1 className="hero__title">{siteConfig.customFields.heroTitle}</h1>
                 <p className="hero__subtitle">{siteConfig.customFields.heroSubTitle}</p>
                 <div className={styles.buttons}>
@@ -78,10 +100,8 @@ function Home() {
               </div>
             </div>
           </div>
-        </header>
-      </div>
-      <main>
-        <SignupForm />
+        </div>
+
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
@@ -93,17 +113,7 @@ function Home() {
             </div>
           </section>
         )}
-        {/* <Tabs>
-          <TabItem value="apple" label="Apple" default>
-            This is an apple 🍎
-          </TabItem>
-          <TabItem value="orange" label="Orange">
-            This is an orange 🍊
-          </TabItem>
-          <TabItem value="banana" label="Banana">
-            This is a banana 🍌
-          </TabItem>
-        </Tabs> */}
+        <SignupForm />
       </main>
     </Layout>
   );

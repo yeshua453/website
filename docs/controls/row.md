@@ -16,8 +16,6 @@ Although the Stack control has a number of different properties, there are three
 
 Stacks can be nested inside one another in order to be able to configure the layout of the application as desired.
 
-import { CodeSample } from '@site/src/components/code-sample';
-
 ## Examples
 
 [Live demo](https://python-stack-example.pgletio.repl.co)

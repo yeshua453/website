@@ -1,6 +1,6 @@
 ---
 title: Create a web app in Python with Flet
-sidebar_label: Python
+sidebar_label: Creating Flet apps in Python
 slug: python
 ---
 
@@ -17,6 +17,37 @@ You can play with the live demo below:
             width: '100%',
             height: '400px',
         }}/>
+
+
+## Your first Flet app
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+Install `flet` module:
+
+```bash
+pip install flet
+```
+
+Create `hello.py` with the following contents:
+
+```python title="hello.py"
+import flet
+from flet import Page, Text
+
+def main(page: Page):
+    page.add(Text("Hello, world!"))
+
+flet.app(target=main)
+```
+
+Run `hello.py` with Python 3 and in a new browser window you'll get:
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
+
+  </TabItem>
+</Tabs>
 
 We chose a ToDo app for the tutorial, because it covers all of the basic concepts you would need to create any web app: building a page layout, adding controls, handling events, displaying and editing lists, making reusable UI components, and deploy options.
 

@@ -8,7 +8,12 @@
 .heroBanner {
   padding: 0;
   /* background: url('/img/hero_back_light.svg') right 60px/115% auto no-repeat; */
-  text-align: center;
+  /* text-align: center; */
+}
+
+.codeSample {
+  width: 100%;
+  margin: 2rem auto;
 }
 
 /* html[data-theme='dark'] .heroBanner {
@@ -23,16 +28,22 @@ html[data-theme='dark'] .bkg {
   padding: 3rem 5rem 0 0;
 }
 
-@media screen and (max-width: 966px) {
+.codeSample pre {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 768px) {
   .heroBanner {
-    padding: 2rem;
+    /* padding: 1rem; */
+    text-align: center;
   }
 }
 
 .buttons {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 .features {
@@ -66,9 +77,9 @@ html[data-theme='dark'] .bkg {
   border-radius: 8px;
   border-width: 2px;
   color: #fff;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
-  padding: 12px 26px;  
+  padding: 17px 35px;
 }
 
 .indexCtasGetStartedButton:hover {
