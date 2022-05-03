@@ -165,6 +165,7 @@ flet.app(target=main)
 | `text`         | string |         | The text displayed on a button. |
 | `icon`         | string |         | Icon shown in the button. |
 | `iconColor`    | string |         | Icon color. |
+| `tooltip`      | string |         | The text displayed when hovering the mouse over the button |
 | `content`      | Control|         | a Control representing custom button content. |
 
 ## Events
@@ -172,5 +173,5 @@ flet.app(target=main)
 | Name      | Description |
 | --------- | ----------- |
 | `click`   | Fires when a user clicks the button.  |
-| `focus`   | TBD. |
-| `blur`    | TBD. |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |
