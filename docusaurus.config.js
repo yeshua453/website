@@ -14,7 +14,11 @@ module.exports = {
     heroSubTitle: 'Flet enables backend developers to easily build realtime web, mobile and desktop apps in their favorite language. No frontend experience required.',
   },
   themeConfig: {
-    hideableSidebar: true,
+    docs: {
+      sidebar: {
+        hideable: true
+      }
+    },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
@@ -46,8 +50,9 @@ module.exports = {
         },
         {
           href: 'https://github.com/flet-dev/flet',
-          label: 'GitHub',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
