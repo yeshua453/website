@@ -6,11 +6,11 @@ slug: python
 
 To write a Flet app you don't need to be front-end guru, but it's recommended to have a basic knowledge of Python and object-oriented programming.
 
-In this guide we'll study the structure of a Flet app, learn how to output data using Flet controls, request data from a user and build basic page layouts. We will also cover some packaging and deployment options to deliver ready app to your users.
+In this guide we'll study the structure of a Flet app, learn how to output data using Flet controls, request data from a user and build basic page layouts. We will also cover some packaging and deployment options to deliver a ready app to your users.
 
 ## Installing `flet` module
 
-Flet requires Python 3.7 or above. To start with Flet, you need to install `flet` module first:
+Flet requires Python 3.8 or above. To start with Flet, you need to install `flet` module first:
 
 ```bash
 pip install flet
@@ -39,49 +39,38 @@ def main(page: Page):
 flet.app(target=main)
 ```
 
+:::note
+This section is intentionally called "basic" as later in this guide we'll look at more real-world approaches to app structure with reusable controls.
+:::
+
 [TBD]
 
+What is page?
+
+What is session?
 
 
-## Flet app structure
+## Controls
 
-In the [previous step](#getting-started-with-flet), we learned how to create a simple Flet page. On that page, all users work with the same contents ("**shared app**").
+Page contents is made of controls (aka widgets).
 
-:::note
+Controls are classes. Instances created via constructors. Controls have properties and events.
 
-Try adding `Textbox` control instead of `Text`:
+You add controls by adding them into children collections of other controls. Call page.update() after modifying. DO not call update() after each modification.
 
-```python
-import flet
-from flet import Textbox
+You can modify control properties. Update(), batches. Control properties can be modified by actions made by user. You can read control properties in event handlers.
 
-page = flet.page()
-page.add(Textbox())
-```
+Controls are stateful - imperative model - easier. Compare with React and Flutter declarative models where control tree is generated from the data every time it changes. Managing state in frontend apps is inherently complex task.
 
-Run the app and open its URL in multiple browser tabs. You'll see that changing Textbox contents in one tab is instantly reflected in others.
+Controls can be nested. Controls tree is called DOM (Document Object Model).
 
-:::
+There are controls for 1) displaying information, 2) data entry, 3) layout controls for arranging other controls on a page, 4) navigation controls and 5) utility controls.
 
-A shared page may be useful for certain types of apps, such as dashboards, status pages, or reports. But for a ToDo app, we want every user to see their own set of tasks. To achieve this, we need to create a "**multi-user app**".
 
-Create `hello-app.py` with the following contents:
+`Visible` - explain
 
-```python title="hello-app.py"
-import flet
-from flet import Textbox
+`Enabled` - recursive
 
-def main(page):
-  page.add(Textbox())
-
-flet.app("hello-app", target=main)
-```
-
-While the application is running, for every new user session Flet calls `main` function with unique page contents.
-
-:::note
-To see multiple sessions in action, open the application URL in a new "incognito" browser window.
-:::
 
 ## Adding page controls and handling events
 
@@ -113,48 +102,6 @@ flet.app("todo-app", target=main)
 Run the app and you should see a page like this:
 
 <p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-1.png" /></p>
-
-### Page layout
-
-Now let's make the app look nice! We want the entire app to be at the top center of the page, stretched over 70% of the page width. The textbox and the button should be aligned horizontally, and take up full app width:
-
-<p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-1.svg" /></p>
-
-`Stack` is a container control that is used to lay other controls out on a page. `Stack` can be vertical (default) or horizontal, and can contain other stacks.
-
-Replace `todo.py` contents with the following:
-
-```python title="todo.py"
-import flet
-from flet import Stack, Textbox, Button, Checkbox
-
-def main(page):
-
-    page.title = "ToDo App"
-    page.horizontal_align = 'center'
-    page.update() # needs to be called every time "page" control is changed
-    
-    def add_clicked(e):
-        tasks_view.controls.append(Checkbox(label=new_task.value))
-        tasks_view.update()
-
-    new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
-    tasks_view = Stack()
-
-    page.add(Stack(width='70%', controls=[
-        Stack(horizontal=True, on_submit=add_clicked, controls=[
-            new_task,
-            Button('Add', on_click=add_clicked)
-        ]),
-        tasks_view
-    ]))
-
-flet.app("todo-app", target=main)
-```
-
-Run the app and you should see a page like this:
-
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-2.png" /></p>
 
 ## Displaying data
 
@@ -215,7 +162,20 @@ for($i = 0; $i -le 20; $i++) {
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/lines-animation.gif" /></div>
 
-### Progress
+#### Text styles
+
+### Icon
+
+Icons list
+
+Link to an app
+
+### Image
+
+Note about CORS
+Side-loading assets
+
+### ProgressBar
 
 Use `Progress` control to display a progress bar. For example, to display a progress of imaginary copy operation:
 
@@ -249,7 +209,8 @@ for($i = 0; $i -lt $steps.Length; $i++) {
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/progress-multi-step.gif" /></div>
 
-### Spinner
+
+### ProgressRing
 
 Use `Spinner` control to visualize an indeterminate progress:
 
@@ -259,6 +220,20 @@ $page.Add($sp)
 ```
 
 <div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/spinner-animation.gif" /></div>
+
+## Layout
+
+Stack...
+Row
+Column
+Stack
+Container
+padding, margin, border, etc.
+
+## Colors
+
+Colors list
+Link to an app
 
 ## Getting user input
 
@@ -337,59 +312,146 @@ TBD
 
 TBD
 
-## Layout
+## Collections
 
-Stack...
+You can use `Column` and `Row` in the most cases.
 
-## Deploying the app
 
-Congratulations! You have created your first Python web app with Flet, and it looks awesome!
+Lot of records:
 
-Now it's time to share your app with the world!
+### ListView
 
-### Instant sharing
+### GridView
 
-Flet is not only a framework for building web apps, but it is also a service for hosting apps' UI.
-You can have the application running on your computer while its UI is streaming to Flet service in real-time.
+`control.clean()` optimization.
 
-To make the app instantly available on the Internet, just add `web=True` parameter to `flet.app()` call at the very end of the program:
+Updating in batches (i % 100) optimization.
 
-```python
-# ...
+## Deploying web app
 
-flet.app(target=main, web=True)
+Flet app can be deployed as a "standalone" web app which means both your Python app and Flet web server are deployed together as a bundle.
+
+Flet apps use WebSockets for real-time partial updates of their UI and sending events back to your program.
+When choosing a hosting provider for your Flet app you should pay attention to their support of WebSockets. Sometimes WebSockets are not allowed or come as a part of more expensive offering, sometimes there is a proxy that periodically breakes WebSocket connection by a timeout (Flet implements re-connection logic, but it could be unpleasant behavior for users of your app anyway).
+
+Another important factor while choosing a hosting provider for Flet app is latency. Every user action on UI sends a message to Flet app and the app sends udpdated UI back to user. Make sure your hosting provider has multiple data centers, so you can run your app closer to the majority of your users.
+
+:::note
+We are not affiliated with hosting providers in this section - we just use their service and love it.
+:::
+
+### Fly.io
+
+[Fly.io](https://fly.io) has robust WebSocket support and can deploy your app to a [data center](https://fly.io/docs/reference/regions/) that is close to your users. They have very attractive pricing with a [generous free tier](https://fly.io/docs/about/pricing/#free-allowances) which allows you to host up to 3 applications for free.
+
+To get started with Fly install [flyctl](https://fly.io/docs/getting-started/installing-flyctl/) and then authenticate:
+
+    flyctl auth login
+
+To deploy the app with `flyctl` you have to add the following 3 files into the folder with your Python app.
+
+Create `requirements.txt` with a list of application dependencies. At minimum it should contain `flet` module:
+
+```txt title="requirements.txt"
+flet>=0.1.16
 ```
 
-A new browser windows will be opened with the URL like this:
+Create `fly.toml` describing Fly application:
 
+```toml title="fly.toml" {1,8}
+app = "<your-app-name>"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  FLET_SERVER_PORT = "8080"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
 ```
-https://app.flet.dev/public/{random}
+
+Replace `<your-app-name>` with desired application name which will be also used in application URL, such as `https://<your-app-name>.fly.dev`.
+
+Note we are setting the value of `FLET_SERVER_PORT` environment variable to `8080` which is an internal TCP port Flet web app is going to run on.
+
+Create `Dockerfile` containing the commands to build your application container:
+
+```Dockerfile title="Dockerfile"
+FROM python:3-alpine
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["python", "./main.py"]
 ```
+
+`main.py` is a file with your Python program.
+
+:::note
+Fly.io deploys every app as a Docker container, but a great thing about Fly is that it provides a free remote Docker builder, so you don't need Docker installed on your machine.
+:::
+
+Next, switch command line to a folder with your app and run the following command to create and initialize a new Fly app:
+
+    flyctl apps create --name <your-app-name>
+
+Deploy the app by running:
+
+    flyctl deploy
+
+That's it! Open your app in the browser by running:
+
+    flyctl apps open
 
 ### Replit
 
-Instant sharing is a great option to quickly share an app on the web, but it requires your computer to be on all the time.
+[Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some performance limitations.
 
-[Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some limitations.
-
-To run your ToDo app on Replit:
+To run your app on Replit:
 
 * [Sign up](https://replit.com/signup?from=landing) on Replit.
 * Click "New repl" button.
-* Select "Python" language from a list and provide repl name, e.g. `my-todo`.
+* Select "Python" language from a list and provide repl name, e.g. `my-app`.
 * Click "Packages" tab and search for `flet` package; select its latest version.
-* Switch back to "Files" tab and copy-paste the [code of Todo app](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) into `main.py`.
-* Update `flet.app()` call (at the very end of the program) to:
-
-```python
-flet.app("index", target=main)
-```
-
-* Run the app. Now both the application code and UI are running on Replit service as a "standalone" app.
-
-:::note
-We are not affiliated with Replit - we just love the service. Todo app demo for this tutorial is [hosted on Replit](https://replit.com/@pglet/ToDo-web-app-in-Python) and you can just "fork" it there and play.
-:::
+* Click "Secrets" tab and add `FLET_SERVER_PORT` variable with value `5000`.
+* Switch back to "Files" tab and copy-paste your app into `main.py`.
+* Run the app. Enjoy.
 
 ## Summary
 
