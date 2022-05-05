@@ -91,7 +91,7 @@ function Home() {
       title={`${siteConfig.customFields.heroTitle}`}
       description={`${siteConfig.tagline}`}>
       <main>
-        <div className="container">
+        <div className="container margin-bottom--lg">
           <div className={clsx('flet-hero', styles.heroBanner)}>
             <div className="row">
               <div className="col  col--6">

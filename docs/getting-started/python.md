@@ -91,115 +91,124 @@ flet.app(target=main)
 In the following examples we will be showing just the contents of `main` function.
 :::
 
+You can modify control properties and the UI will be updated on the next `page.update()`:
 
+```python
+t = Text()
+page.add(t) # it's a shortcut for page.controls.add(t) and then page.update()
 
- Instances created via constructors. Controls have properties and events.
+for i in range(10):
+    t.value = f"Step {i}"
+    page.update()
+    sleep(1)
+```
 
-You add controls by adding them into children collections of other controls. Call page.update() after modifying. DO not call update() after each modification.
+Some controls are "container" controls (like Page) which could contain other controls. For example, `Row` control allows arranging other controls in a row one-by-one:
 
-You can modify control properties. Update(), batches. Control properties can be modified by actions made by user. You can read control properties in event handlers.
+```python
+page.add(
+    Row(controls=[
+        Text("A"),
+        Text("B"),
+        Text("C")
+    ])
+)
+```
 
-Controls are stateful - imperative model - easier. Compare with React and Flutter declarative models where control tree is generated from the data every time it changes. Managing state in frontend apps is inherently complex task.
+or `TextField` and `ElevatedButton` next to it:
 
-Controls can be nested. Controls tree is called DOM (Document Object Model).
+```python
+page.add(
+    Row(controls=[
+        TextField(label="Your name"),
+        ElevatedButton(text="Say my name!")
+    ])
+)
+```
 
-There are controls for 1) displaying information, 2) data entry, 3) layout controls for arranging other controls on a page, 4) navigation controls and 5) utility controls.
+`page.update()` is smart enough to send only the changes made since its last call, so you can add a couple of new controls to the page, remove some of them, change other controls' properties and then call `page.Update()` to do a batched update, for example:
 
+```python
+for i in range(10):
+    page.controls.append(Text(f"Line {i}"))
+    if i > 4:
+        page.controls.pop(0)
+    page.update()
+    sleep(0.3)
+```
 
-`Visible` - explain
+Some controls, like buttons, could have event handlers reacting on a user input, for example `ElevatedButton.on_click`:
 
-`Enabled` - recursive
+```python
+def button_clicked(e):
+    page.add(Text("Clicked!"))
 
+page.add(ElevatedButton(text="Click me", on_click=button_clicked))
+```
 
-## Adding page controls and handling events
+and more advanced example for a simple To-Do:
 
-Now we're ready to create a multi-user ToDo app.
-
-To start, we'll need a Textbox for entering a task name, and an "Add" button with an event handler that will display a checkbox with a new task.
-
-Create `todo.py` with the following contents:
-
-```python title="todo.py"
+```python
 import flet
-from flet import Textbox, Button, Checkbox
+from flet import Checkbox, ElevatedButton, Row, TextField
 
 def main(page):
-    
     def add_clicked(e):
         page.add(Checkbox(label=new_task.value))
 
-    new_task = Textbox(placeholder='Whats needs to be done?')
+    new_task = TextField(hint_text="Whats needs to be done?", width=300)
+    page.add(Row([new_task, ElevatedButton("Add", on_click=add_clicked)]))
 
-    page.add(
-        new_task,
-        Button('Add', on_click=add_clicked)
-    )
-
-flet.app("todo-app", target=main)
+flet.app(target=main)
 ```
 
-Run the app and you should see a page like this:
+:::info
+Flet implements *imperative* UI model where you "manually" build application UI with stateful controls and then mutate it by updating control properties. Flutter implements *declarative* model where UI is automatically re-built on application data changes.
+Managing application state in modern frontend applications is inherently complex task and Flet's "old-school" approach could be more attractive to programmers without frontend experience.
+:::
 
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-1.png" /></p>
+### `visible` property
+
+Every control has `visible` property which is `true` by default - control is rendered on the page. Setting `visible` to `false` completely prevents control (and all its children if any) from rendering on a page canvas. Hidden controls cannot be focused or selected with a keyboard or mouse and they do not emit any events.
+
+### `disabled` property
+
+Every control has `disabled` property which is `false` by default - control and all its children are enabled.
+`disabled` property is mostly used with data entry controls like `TextField`, `Dropdown`, `Checkbox`, buttons.
+However, `disabled` could be set to a parent control and its value will be propagated down to all children recursively.
+
+For example, if you have a form with multiple entry control you can set `disabled` property for each control individually:
+
+```python
+first_name = TextField()
+last_name = TextField()
+first_name.disabled = True
+last_name.disabled = True
+page.add(first_name, last_name)
+```
+
+or you can put form controls into container, e.g. `Column` and then set `disabled` for the column:
+
+```python
+first_name = TextField()
+last_name = TextField()
+c = Column(controls=[
+    first_name,
+    last_name
+])
+c.disabled = True
+page.add(c)
+```
 
 ## Displaying data
 
 ### Text
 
-`Text` control is used to output textual data. Its main properties are `Value` and `Size`, but it also has a number of formatting properties to control its appearence. For example:
+`Text` control is used to output textual data. Its main properties are `value` and `size`, but it also has a number of formatting properties to control its appearence. For example:
 
-```powershell
-Text -Value 'Centered Text' -Size xlarge -Align Center -VerticalAlign Center -Width 100 -Height 100 `
-     -Color 'White' -BgColor 'Salmon' -Padding 5 -Border '1px solid #555'
+```python
+t = Text(value="Centered Text", size=30, text_align="center", color="white", bgcolor="pink")
 ```
-
-You create control with `Text` cmdlet, add it to `Controls` collection of `$page` (or children collection of other container control such as `Stack`) and then call `$page.Update()` to send local page changes to Flet server:
-
-```powershell
-$txt = Text -Value "Hi there!"
-$page.Controls.Add($txt)
-$page.Update()
-```
-
-You can update control properties and push the changes again:
-
-```powershell
-$txt.Text = "Current date is: $(GetDate)"
-$txt.Color = "Blue"
-$page.Update()
-```
-
-You can even do some animations, for example:
-
-```powershell
-$text = Text -Value 'Centered Text' -Size xlarge -Align Center -VerticalAlign Center -Width 100 -Height 100 `
-  -Color 'White' -BgColor 'Salmon' -Padding 5 -Border '1px solid #555'
-$page.Add($text)
-
-for($i = 0; $i -le 50; $i++) {
-  $text.Value = "Radius $i"
-  $text.BorderRadius = $i
-  $page.Update()
-  Start-Sleep -Milliseconds 50
-}
-```
-
-<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/radius-animation.gif" /></div>
-
-`$page.Update()` is smart enough to send only the changes made since its last call, so you can add a few new controls to the page, remove some of them, change control properties and then call `$page.Update()` to do batched update, for example:
-
-```powershell
-for($i = 0; $i -le 20; $i++) {
-  $page.Controls.Add((Text "Line $i"))
-  if ($i -gt 4) {
-    $page.Controls.RemoveAt(0)
-  }
-  $page.Update()
-  Start-Sleep -Milliseconds 300
-}
-```
-
-<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/lines-animation.gif" /></div>
 
 #### Text styles
 

@@ -24,6 +24,8 @@
   --ifm-link-color: var(--flet-link-color);
   --ifm-navbar-link-hover-color: var(--flet-link-color);
 
+  --docusaurus-highlighted-code-line-bg: rgb(220, 221, 223);
+
   /* navbar */
   /* --ifm-navbar-padding-vertical: 0.5rem;
   --ifm-navbar-padding-horizontal: 0.7rem; */
@@ -39,13 +41,6 @@
 .navbar__logo {
   /* width: 42px; */
   height: 30px;
-}
-
-.docusaurus-highlight-code-line {
-  background-color: rgb(234, 236, 238);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
 }
 
 .flet-hero h1 {
@@ -129,6 +124,7 @@ html[data-theme='dark']:root {
   --ifm-navbar-background-color: #181A21;
   --ifm-footer-background-color: #1f2127;
   --ifm-color-secondary: #2f2f2f;
+  --docusaurus-highlighted-code-line-bg: rgb(76, 81, 90);  
 }
 
 html[data-theme='dark'] .navbar__title {
@@ -136,7 +132,7 @@ html[data-theme='dark'] .navbar__title {
 }
 
 html[data-theme='dark'] .flet-hero h1 {
-  color: var(--ifm-font-color-base);
+  color: #3ba9fd;
 }
 
 html[data-theme='dark'] .hero__subtitle {
