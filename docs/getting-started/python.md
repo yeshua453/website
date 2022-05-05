@@ -30,7 +30,7 @@ A very minimal Flet app has the following structure:
 
 ```python
 import flet
-from flet import Page, Text
+from flet import Page
 
 def main(page: Page):
     # add/update controls on Page
@@ -43,18 +43,57 @@ flet.app(target=main)
 This section is intentionally called "basic" as later in this guide we'll look at more real-world approaches to app structure with reusable controls.
 :::
 
-[TBD]
+A typical Flet program ends with a call to `flet.app()` where the app starts waiting for new user sessions. Function `main()` is an entry point in a Flet application. It's being called on a new thread for every user session with a `Page` instance passed into it. When running Flet app in the browser a new user session is started for every opened tab or page. When running as a desktop app there is only one session created.
 
-What is page?
+`Page` is like a "canvas" specific to a user, a visual state of a user session. To build an application UI you add and remove controls to a page, update their properties. Code sample above will be displaying just a blank page to every user.
 
-What is session?
+By default, Flet app starts in a native OS window, which is very handy for developing. However, you can open it in a new browser window by modifying a call to `flet.app` as following:
 
+```python
+flet.app(target=main, view=flet.WEB_BROWSER)
+```
+
+:::info
+Internally, every Flet app is a web app and even if it's opened in a native OS window a built-in web server is still started on a background. Flet web server is called "Fletd" and by default it's listening on a random TCP port. You can specify a custom TCP port and then open the app in the browser along with desktop view:
+
+```python
+flet.app(port=8550, target=main)
+```
+
+Open `http://localhost:<port>` in your browser to see web version of your Flet app.
+:::
 
 ## Controls
 
-Page contents is made of controls (aka widgets).
+User interface is made of **Controls** (aka widgets). To make controls visible to a user they must be added to a `Page` or inside other controls. Page is the top-most control. Nesting controls into each other could be represented as a tree with Page as a root.
 
-Controls are classes. Instances created via constructors. Controls have properties and events.
+Controls are just regular Python classes. Create control instances via constructors with parameters matching their properties, for example:
+
+```python
+t = Text(value="Hello, world!", color="green")
+```
+
+To display control on a page add it to `controls` list of a Page and call `page.update()` to send page changes to a browser or desktop client:
+
+```python
+import flet
+from flet import Page
+
+def main(page: Page):
+    t = Text(value="Hello, world!", color="green")
+    page.controls.append(t)
+    page.update()
+
+flet.app(target=main)
+```
+
+:::note
+In the following examples we will be showing just the contents of `main` function.
+:::
+
+
+
+ Instances created via constructors. Controls have properties and events.
 
 You add controls by adding them into children collections of other controls. Call page.update() after modifying. DO not call update() after each modification.
 

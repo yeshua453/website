@@ -12,25 +12,53 @@ import CodeBlock from '@theme/CodeBlock';
 
 const features = [
   {
-    title: <>Build web apps in your language</>,
+    title: <>Quickly visualize your ideas</>,
     imageUrl: 'img/home-languages.svg',
     description: (
       <>
-        Add rich interactive web UI to your backend apps, scripts, jobs written in <a href="/docs/getting-started/python">Python</a>, <a href="/docs/tutorials/bash">Bash</a>, <a href="/docs/tutorials/powershell">PowerShell</a> or <a href="/docs/tutorials/node">Node.js</a>.
+        An internal tool or a dashboard for your team, weekend project, data entry form, kiosk app or high-fidelity prototype
+        - Flet is an ideal framework to quickly hack a great-looking interactive apps to serve a group of users.
       </>
     ),
   },
   {
-    title: <>No HTML/CSS/JavaScript required</>,
+    title: <>Easy to learn programming model</>,
     imageUrl: 'img/home-no-html.svg',
     description: (
       <>
-        Focus on your work rather than fighting with endless JavaScript frameworks, HTML templates, requests parsing or state management.
+        This is another feature we would like to tell you about.
       </>
     ),
   },
   {
-    title: <>Something else</>,
+    title: <>Speaks your language</>,
+    imageUrl: 'img/home-zero-deploy.svg',
+    description: (
+      <>
+        This is another feature we would like to tell you about.
+      </>
+    ),
+  },
+  {
+    title: <>Powered by Flutter</>,
+    imageUrl: 'img/home-zero-deploy.svg',
+    description: (
+      <>
+        This is another feature we would like to tell you about.
+      </>
+    ),
+  },
+  {
+    title: <>An Electron alternative</>,
+    imageUrl: 'img/home-zero-deploy.svg',
+    description: (
+      <>
+        This is another feature we would like to tell you about.
+      </>
+    ),
+  },
+  {
+    title: <>Deliver your apps to any device</>,
     imageUrl: 'img/home-zero-deploy.svg',
     description: (
       <>
@@ -62,23 +90,6 @@ function Home() {
     <Layout
       title={`${siteConfig.customFields.heroTitle}`}
       description={`${siteConfig.tagline}`}>
-      {/* <div className="container">
-        <header className={clsx('flet-hero', styles.heroBanner)}>
-          <div className="row">
-            <div className="col">
-              <h1 className="hero__title">{siteConfig.customFields.heroTitle}</h1>
-              <p className="hero__subtitle">{siteConfig.customFields.heroSubTitle}</p>
-              <div className={styles.buttons}>
-                <Link
-                  className={styles.indexCtasGetStartedButton}
-                  to={useBaseUrl('docs/')}>
-                  Get Started
-                </Link>
-              </div>
-            </div>
-          </div>
-        </header>
-      </div> */}
       <main>
         <div className="container">
           <div className={clsx('flet-hero', styles.heroBanner)}>
@@ -101,18 +112,20 @@ function Home() {
             </div>
           </div>
         </div>
-
-        {features && features.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                {features.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
+        <div className="container text--center">
+          <h2>Main features</h2>
+          {features && features.length > 0 && (
+            <section className={styles.features}>
+              <div className="container">
+                <div className="row">
+                  {features.map((props, idx) => (
+                    <Feature key={idx} {...props} />
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
-        )}
+            </section>
+          )}
+        </div>
         <SignupForm />
       </main>
     </Layout>
