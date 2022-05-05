@@ -207,7 +207,15 @@ page.add(c)
 `Text` control is used to output textual data. Its main properties are `value` and `size`, but it also has a number of formatting properties to control its appearence. For example:
 
 ```python
-t = Text(value="Centered Text", size=30, text_align="center", color="white", bgcolor="pink")
+t = Text(
+    value="This is a Text control sample",
+    size=30,
+    color="white",
+    bgcolor="pink",
+    weight="bold",
+    italic=True,
+)
+page.add(t)
 ```
 
 #### Text styles
