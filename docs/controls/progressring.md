@@ -6,7 +6,7 @@ slug: progressring
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A Spinner is an outline of a circle which animates around itself indicating to the user that things are processing. A Spinner is shown when it's unsure how long a task will take making it the indeterminate version of a [Progress](progress).
+A Spinner is an outline of a circle which animates around itself indicating to the user that things are processing.
 
 ## Examples
 
