@@ -38,6 +38,7 @@ module.exports = {
         {
           'Buttons': [
             'controls/elevatedbutton',
+            'controls/floatingactionbutton',
             'controls/iconbutton',
             'controls/outlinedbutton',
             'controls/textbutton',
