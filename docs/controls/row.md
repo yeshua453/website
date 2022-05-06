@@ -47,13 +47,6 @@ with flet.page("horizontal-stack-gap-padding") as page:
   input()
 ```
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/stack/horizontal-stack-gap-padding.gif" width="75%" />
@@ -92,13 +85,6 @@ with flet.page("horizontal-stack-wrapping") as page:
   input()
 ```
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/stack/horizontal-stack-wrapping.gif" width="75%" />
@@ -132,13 +118,6 @@ with flet.page("horizontal-stack-horizontal-alignments") as page:
 
   input()
 ```
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
   </TabItem>
 </Tabs>
 
@@ -174,119 +153,72 @@ with flet.page("horizontal-stack-vertical-alignments") as page:
   input()
 ```
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/stack/horizontal-stack-vertical-alignments.png" width="75%" />
-
-### Vertical stack - Vertical alignments
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Stack, Text
-with flet.page("vertical-stack-vertical-alignments") as page:
-
-  bg_color = '#ddddee'
-  page.horizontal_align = 'stretch'
-
-  def items(count):
-    items = []
-    for i in range(1, count + 1):
-      items.append(Text(value=i, align='center', vertical_align='center', width=30, height=30, bgcolor='BlueMagenta10', color='white', padding=5))
-    return items
-
-  def vertical_stack(vert_align):
-        return Stack(width='20%', controls=[
-            Text(value=vert_align),
-            Stack(vertical_align=vert_align, horizontal_align='center', height=300, gap=20, bgcolor=bg_color, controls=items(3))
-        ])
-
-  page.add(Stack(horizontal=True, horizontal_align='space-between', width='100%', controls=[
-            vertical_stack('start'),
-            vertical_stack('center'),
-            vertical_stack('end'),
-            vertical_stack('space-between'),
-            vertical_stack('space-around'),
-            vertical_stack('space-evenly')
-        ]))
-
-  input()
-```
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/stack/vertical-stack-vertical-alignments.png" width="100%" />
-
-### Stack with `submit` event
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Stack, Text, Textbox, Message
-with flet.page("stack-with-submit-event") as page:
-
-  bg_color = '#ddddee'
-  page.horizontal_align = 'stretch'
-
-  def stack_on_submit(e):
-        stack = e.control
-        stack.controls.insert(0, Message("Form has been submitted!", type='success', dismiss=True))
-        stack.update()
-  
-  form1 = Stack(padding=10, width='50%', border='2px solid #eee', border_radius=5, controls=[
-        Text("Pressing ENTER inside the stack will fire 'submit' event."),
-        Textbox("First name"),
-        Textbox("Last name")
-    ], on_submit=stack_on_submit)
-
-  page.add(form1)
-
-  input()
-```
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/stack/stack-with-submit-event.gif" width="100%" />
 
 ## Properties
 
 ### `controls`
 
+A list of Controls to display inside thr Row.
+
 ### `alignment`
+
+How the child Controls should be placed horizontally.
+
+For example, `start`, the default, places the children on the left of a Row. Supported values: `start`, `end`, `center`, `spaceBetween`, `spaceAround`, `spaceEvenly`.
 
 ### `vertical_alignment`
 
+How the child Controls should be placed vertically.
+
+Default value is `start`. Supported values: `start`, `center`, `end`, `stretch`, `baseline`.
+
 ### `tight`
+
+Specifies how much space should be occupied horizontally. Default is `False` - allocate all space to children.
 
 ### `spacing`
 
+Spacing between controls in a row. Default value is 10 virtual pixels. Spacing is applied only when `alignment` is set to `start`, `end` or `center`.
+
 ### `wrap`
+
+When set to `True` the Row will put child controls into additional rows (runs) if they don't fit a single row.
 
 ### `run_spacing`
 
+Spacing between runs when `wrap=True`. Default value is 10.
+
 ### `scroll`
+
+Enables scrolling for the Row to prevent its overflow. Supported values:
+
+* `none` (default) - the Row is non-scrollable and its content could overflow.
+* `auto` - scrolling is enabled and scroll bar is only shown when scrolling occurs.
+* `adaptive` - scrolling is enabled and scroll bar is always shown when running app as web or desktop.
+* `always` - scrolling is enabled and scroll bar is always shown.
+
+## Expanding children
+
+When a Control is placed into a Row you can "expand" it to fill the available space. Every Control has `expand` property that can have either boolean value (`True` - expand control to fill all available space) or an integer - an "expand factor" specifying how to divide a free space with other expanded child controls. For example, this code creates a row with a TextField taking all available space and an ElevatedButton next to it:
+
+```python
+r = Row([
+  TextField(hint_text="Enter your name", expand=True),
+  ElevatedButton(text="Join chat")
+])
+```
+
+The following example with numeric expand factors creates a Row with 3 containers in it and having widths of `20% (1/5)`, `60% (3/5)` and `20% (1/5)` respectively:
+
+```python
+r = Row([
+  Container(expand=1, content=Text("A")),
+  Container(expand=3, content=Text("B")),
+  Container(expand=1, content=Text("C"))
+])
+```
+
+In general, the resulting width of a child in percents is calculated as `expand / sum(all expands) * 100%`.
