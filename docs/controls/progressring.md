@@ -6,11 +6,14 @@ slug: progressring
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A Spinner is an outline of a circle which animates around itself indicating to the user that things are processing.
+A material design circular progress indicator, which spins to indicate that the application is busy. A control that shows progress along a circle.
+
+There are two kinds of circular progress indicators:
+
+* *Determinate*. Determinate progress indicators have a specific value at each point in time, and the value should increase monotonically from `0.0` to `1.0`, at which time the indicator is complete. To create a determinate progress indicator, use a non-null value between `0.0` and `1.0`.
+* *Indeterminate*. Indeterminate progress indicators do not have a specific value at each point in time and instead indicate that progress is being made without indicating how much progress remains. To create an indeterminate progress indicator, use a null value.
 
 ## Examples
-
-[Live demo](https://python-spinner-example.pgletio.repl.co)
 
 ### Spinner sizes
 
@@ -32,57 +35,17 @@ with flet.page("spinner-size") as page:
     )
 ```
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/spinner/spinner-size.gif" width="25%" />
 
-### Spinner label positioning
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Spinner, Text
-
-with flet.page("spinner-label-positioning") as page:
-
-    page.add(
-        Text("Spinner label positioning", size="xLarge"),
-        Text("Spinner with label positioned below"),
-        Spinner("I am definitely loading...", label_position="bottom"),
-        Text("Spinner with label positioned above"),
-        Spinner("Seriously, still loading...", label_position="top"),
-        Text("Spinner with label positioned to right"),
-        Spinner("Wait, wait...", label_position="right"),
-        Text("Spinner with label positioned to left"),
-        Spinner("Nope, still loading...", label_position="left"),
-    )
-
-```
-  </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/spinner/spinner-label-positioning.gif" width="35%" />
 
 ## Properties
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
-| `size`         | string  | `medium` | The size of Spinner to render: `xSmall`, `small`, `medium`, `large` |
-| `label`        | string  |          | The label to show next to the Spinner. |
-| `labelPosition` | string  | `bottom` | The position of the label in regards of the spinner animation: `top`, `right`, `left`, `bottom` |
+| `value`        | number  |         | The value of this progress indicator. A value of 0.0 means no progress and 1.0 means that progress is complete. The value will be clamped to be in the range 0.0-1.0. If null, this progress indicator is indeterminate, which means the indicator displays a predetermined animation that does not indicate how much actual progress is being made. |
+| `stroke_width` | number  | `medium`| The width of the line used to draw the circle. |
+| `color`        | string  |         | The progress indicator's color. |
+| `bgcolor`      | string  |         | Color of the circular track being filled by the circular indicator. |
+| `tooltip`      | string  |         | The text displayed when hovering the mouse over the control. |

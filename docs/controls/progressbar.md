@@ -6,11 +6,12 @@ slug: progressbar
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Progress are used to show the completion status of an operation lasting more than 2 seconds.
+A material design linear progress indicator, also known as a progress bar. A control that shows progress along a line.
 
-## Examples
+There are two kinds of linear progress indicators:
 
-[Live demo](https://python-spinner-example.pgletio.repl.co)
+* *Determinate*. Determinate progress indicators have a specific value at each point in time, and the value should increase monotonically from `0.0` to `1.0`, at which time the indicator is complete. To create a determinate progress indicator, use a non-null value between `0.0` and `1.0`.
+* *Indeterminate*. Indeterminate progress indicators do not have a specific value at each point in time and instead indicate that progress is being made without indicating how much progress remains. To create an indeterminate progress indicator, use a null value.
 
 ### Basic progress
 
@@ -66,13 +67,6 @@ with flet.page("basic-progress") as page:
     prog2.update()
 ```
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/progress/basic-progress.gif" width="75%" />
@@ -94,13 +88,6 @@ with flet.page("basic-progress") as page:
     )
 ```
   </TabItem>
-  <TabItem value="powershell" label="PowerShell">
-
-```powershell
-# TODO
-```
-
-  </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/progress/indeterminate-progress.gif" width="75%" />
@@ -109,6 +96,8 @@ with flet.page("basic-progress") as page:
 
 | Name           | Type    | Default | Description |
 | -------------- | ------- | ------- | ----------- |
-| `value`        | number  |         | Percentage of the operation's completeness, numerically between 0 and 100. If this is not set, the indeterminate progress animation will be shown instead. |
-| `label`        | string  |         | Label to display above the control. |
-| `description`  | string  |         | Text describing or supplementing the operation.  |
+| `value`        | number  |         | The value of this progress indicator. A value of 0.0 means no progress and 1.0 means that progress is complete. The value will be clamped to be in the range 0.0-1.0. If null, this progress indicator is indeterminate, which means the indicator displays a predetermined animation that does not indicate how much actual progress is being made. |
+| `bar_height`   | number  | 4       | The minimum height of the line used to draw the linear indicator. |
+| `color`        | string  |         | The progress indicator's color. |
+| `bgcolor`      | string  |         | Color of the track being filled by the linear indicator. |
+| `tooltip`      | string  |         | The text displayed when hovering the mouse over the control. |

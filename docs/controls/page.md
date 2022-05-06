@@ -21,6 +21,7 @@ Page control has a reserved `page` control ID. You cannot add Page control, howe
 | `padding`         | string    | `10px`        | The padding of a page container.            |
 | `gap`             | string    | `10`          | A gap between page child controls.            |
 | `bgcolor`         | string    |               | Page background color.            |
+| floating_action_button | Control |     | FloatingActionButton | 
 | `hash`            | string    |               | Read-only window's width. Updated for multi-user apps only when browser window is 
 | `winWidth`        | number    |               | Read-only window's width. Updated for multi-user apps only when browser window is resized.      |
 | `winHeight`       | number    |               | Read-only window's height. Updated for multi-user apps only when browser window is resized.      |
