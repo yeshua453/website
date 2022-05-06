@@ -110,4 +110,99 @@ flet.app(target=main)
 
 ## Properties
 
+### `content`
 
+A child Control contained by the container.
+
+### `padding`
+
+Empty space to inscribe inside a container decoration (background, border). The child control is placed inside this padding.
+
+Padding is an instance of `padding.Padding` class with properties set padding for all sides of the rectangle: `left`, `top`, `right`, `bottom`. An instance of `padding.Padding` can be created via constructor with values for specific sides or created with helper methods:
+
+* `padding.all(value: float)`
+* `padding.symmetric(vertical, horizontal)`
+* `padding.only(left, top, right, bottom)`
+
+For example:
+
+```python
+from flet import padding
+
+container_1.padding = padding.all(10)
+container_2.padding = padding.symmetric(horizontal=10)
+```
+
+### `margin`
+
+Empty space to surround the decoration and child control.
+
+Margin is an instance of `margin.Margin` class with properties set margins for all sides of the rectangle: `left`, `top`, `right`, `bottom`. An instance of `margin.Margin` can be created via constructor with values for specific sides or created with helper methods:
+
+* `margin.all(value)`
+* `margin.symmetric(vertical, horizontal)`
+* `margin.only(left, top, right, bottom)`
+
+For example:
+
+```python
+from flet import margin
+
+container_1.margin = margin.only(top=10)
+container_2.margin = margin.symmetric(vertical=10)
+```
+
+### `alignment`
+
+Align the child control within the container.
+
+Alignment is an instance of `alignment.Alignment` class object with `x` and `y` properties representing the distance from the center of a rectangle. `x=0`, `y=0` represents the center of the rectangle. `x=-1`, `y=-1` represents the top left of the rectangle, `x=1.0`, `y=1.0` represents the bottom right of the rectangle. There are pre-defined alignment constants in `flet.alignment` module: `topLeft`, `topCenter`, `topRight`, `centerLeft`, `center`, `centerRight`, `bottomLeft`, `bottomCenter`, `bottomRight`.
+
+For example:
+
+```python
+from flet import alignment
+
+container_1.alignment = alignment.bottom_right
+container_2.alignment = alignment.Alignment(-0.5, -0.5)
+```
+
+### `bgcolor`
+
+Background color of the container.
+
+A color value could be a hex value in `#ARGB` format (e.g. `#FFCC0000`), `#RGB` format (e.g. `#CC0000`) or a named color from `flet.colors` module.
+
+### `border`
+
+A border to draw above the background color.
+
+Each side of the container border is described by an instance of `border.BorderSide` class with two properties: `width` (number) and `color` (string). The value of `border` property is an instance of `border.Border` class describing all 4 sides of the rectangle. Helper methods available to set border styles:
+
+* `border.all(width, color)`
+* `border.symmetric(vertical: BorderSide, horizontal: BorderSide)`
+* `border.only(left: BorderSide, top: BorderSide, right: BorderSide, bottom: BorderSide)`.
+
+For example:
+
+```python
+from flet import border, colors
+container_1.border = border.all(10, colors.PINK_600)
+container_1.border = border.only(bottom=border.BorderSide(1, "black"))
+```
+
+### `border_radius`
+
+If specified, the corners of the container are rounded by this radius. Border radius is an instance of `border_radius.BorderRadius` class with 4 properties: `topLeft`, `topRight`, `bottomLeft`, `bottomRight`. The object could be created with a constructor where all corner values set separately or with helper methods:
+
+* `border_radius.all(value)`
+* `border_radius.horizontal(left: float = 0, right: float = 0)`
+* `border_radius. vertical(top: float = 0, bottom: float = 0)`
+* `border_radius.only(topLeft, topRight, bottomLeft, bottomRight)`
+
+For example:
+
+```python
+from flet import border_radius
+container_1.border_radius = border_radius.all(30)
+```
