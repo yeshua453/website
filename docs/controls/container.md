@@ -77,7 +77,7 @@ For example:
 from flet import padding
 
 container_1.padding = padding.all(10)
-container_2.padding = padding.all(20)
+container_2.padding = 20 # same as padding.all(20)
 container_3.padding = padding.symmetric(horizontal=10)
 container_4.padding=padding.only(left=10)
 ```
@@ -100,7 +100,7 @@ For example:
 from flet import margin
 
 container_1.margin = margin.all(10)
-container_2.margin = margin.all(20)
+container_2.margin = 20 # same as margin.all(20)
 container_3.margin = margin.symmetric(vertical=10)
 container_3.margin = margin.only(left=10)
 ```
