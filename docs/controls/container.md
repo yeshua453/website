@@ -130,8 +130,12 @@ For example:
 from flet import padding
 
 container_1.padding = padding.all(10)
-container_2.padding = padding.symmetric(horizontal=10)
+container_2.padding = padding.all(20)
+container_3.padding = padding.symmetric(horizontal=10)
+container_4.padding=padding.only(left=10)
 ```
+
+<img src="/img/docs/controls/container/container-padding.png" width="60%" />
 
 ### `margin`
 
