@@ -53,62 +53,9 @@ flet.app(target=main)
 
 <img src="/img/docs/controls/container/containers-background-color.png" width="40%" />
 
-### Containers with different alignments
-
-Control can be aligned within a container according to the diagram below:
-
-<img src="/img/docs/controls/container/container-alignments-diagram.png" width="40%" />
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Container, ElevatedButton, Page, Row, alignment, colors
-
-
-def main(page: Page):
-    page.title = "Containers with different alignments"
-
-    c1 = Container(
-        content=ElevatedButton("Center"),
-        bgcolor=colors.AMBER,
-        padding=15,
-        alignment=alignment.center,
-        width=150,
-        height=150,
-    )
-
-    c2 = Container(
-        content=ElevatedButton("Top left"),
-        bgcolor=colors.AMBER,
-        padding=15,
-        alignment=alignment.top_left,
-        width=150,
-        height=150,
-    )
-
-    c3 = Container(
-        content=ElevatedButton("-0.5, -0.5"),
-        bgcolor=colors.AMBER,
-        padding=15,
-        alignment=alignment.Alignment(-0.5, -0.5),
-        width=150,
-        height=150,
-    )
-
-    r = Row([c1, c2, c3])
-    page.add(r)
-
-
-flet.app(target=main)
-```
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/container/containers-alignments.png" width="60%" />
-
 ## Properties
+
+<img src="/img/docs/controls/container/container-diagram.png" width="60%" />
 
 ### `content`
 
@@ -130,8 +77,12 @@ For example:
 from flet import padding
 
 container_1.padding = padding.all(10)
-container_2.padding = padding.symmetric(horizontal=10)
+container_2.padding = padding.all(20)
+container_3.padding = padding.symmetric(horizontal=10)
+container_4.padding=padding.only(left=10)
 ```
+
+<img src="/img/docs/controls/container/container-padding-diagram.png" width="60%" />
 
 ### `margin`
 
@@ -148,9 +99,12 @@ For example:
 ```python
 from flet import margin
 
-container_1.margin = margin.only(top=10)
-container_2.margin = margin.symmetric(vertical=10)
+container_1.margin = margin.all(10)
+container_2.margin = margin.all(20)
+container_3.margin = margin.symmetric(vertical=10)
+container_3.margin = margin.only(left=10)
 ```
+<img src="/img/docs/controls/container/container-margin-diagram.png" width="60%" />
 
 ### `alignment`
 
@@ -158,14 +112,18 @@ Align the child control within the container.
 
 Alignment is an instance of `alignment.Alignment` class object with `x` and `y` properties representing the distance from the center of a rectangle. `x=0`, `y=0` represents the center of the rectangle. `x=-1`, `y=-1` represents the top left of the rectangle, `x=1.0`, `y=1.0` represents the bottom right of the rectangle. There are pre-defined alignment constants in `flet.alignment` module: `topLeft`, `topCenter`, `topRight`, `centerLeft`, `center`, `centerRight`, `bottomLeft`, `bottomCenter`, `bottomRight`.
 
+<img src="/img/docs/controls/container/container-alignments-diagram.png" width="40%" />
+
 For example:
 
 ```python
 from flet import alignment
 
-container_1.alignment = alignment.bottom_right
-container_2.alignment = alignment.Alignment(-0.5, -0.5)
+container_1.alignment = alignment.center
+container_2.alignment = alignment.top_left
+container_3.alignment = alignment.Alignment(-0.5, -0.5)
 ```
+<img src="/img/docs/controls/container/containers-alignments.png" width="60%" />
 
 ### `bgcolor`
 
