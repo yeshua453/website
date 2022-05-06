@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 A control that displays its children in a horizontal array.
-To cause a child control to expand to fill the available horizontal space set its `expand` property.
+To cause a child control to expand and fill the available horizontal space set its `expand` property.
 
 ## Examples
 
@@ -161,7 +161,7 @@ with flet.page("horizontal-stack-vertical-alignments") as page:
 
 ### `controls`
 
-A list of Controls to display inside thr Row.
+A list of Controls to display inside the Row.
 
 ### `alignment`
 
@@ -193,7 +193,7 @@ Spacing between runs when `wrap=True`. Default value is 10.
 
 ### `scroll`
 
-Enables scrolling for the Row to prevent its overflow. Supported values:
+Enables horizontal scrolling for the Row to prevent its content overflow. Supported values:
 
 * `none` (default) - the Row is non-scrollable and its content could overflow.
 * `auto` - scrolling is enabled and scroll bar is only shown when scrolling occurs.
@@ -202,7 +202,7 @@ Enables scrolling for the Row to prevent its overflow. Supported values:
 
 ## Expanding children
 
-When a Control is placed into a Row you can "expand" it to fill the available space. Every Control has `expand` property that can have either boolean value (`True` - expand control to fill all available space) or an integer - an "expand factor" specifying how to divide a free space with other expanded child controls. For example, this code creates a row with a TextField taking all available space and an ElevatedButton next to it:
+When a child Control is placed into a Row you can "expand" it to fill the available space. Every Control has `expand` property that can have either a boolean value (`True` - expand control to fill all available space) or an integer - an "expand factor" specifying how to divide a free space with other expanded child controls. For example, this code creates a row with a TextField taking all available space and an ElevatedButton next to it:
 
 ```python
 r = Row([
