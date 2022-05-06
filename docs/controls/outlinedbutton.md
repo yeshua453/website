@@ -7,35 +7,170 @@ slug: outlinedbutton
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Control description goes here.
+Outlined buttons are medium-emphasis buttons. They contain actions that are important, but they aren’t the primary action in an app.
 
 ## Examples
 
-### Example 1
+### Basic outlined buttons
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
+from flet import OutlinedButton, Page
 
-# ...
+
+def main(page: Page):
+    page.title = "Basic outlined buttons"
+    page.add(
+        OutlinedButton(text="Outlined button"),
+        OutlinedButton("Disabled button", disabled=True),
+    )
+
+flet.app(target=main)
 ```
   </TabItem>
+
 </Tabs>
+
+<img src="/img/docs/controls/outlined-button/basic-outlined-buttons.png" width="40%" />
+
+### Outlined buttons with icons
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import OutlinedButton, Page
+
+
+def main(page: Page):
+    page.title = "Outlined buttons with icons"
+    page.add(
+        OutlinedButton("Button with icon", icon="chair_outlined"),
+        OutlinedButton(
+            "Button with colorful icon",
+            icon="park_rounded",
+            icon_color="green400",
+        ),
+    )
+
+flet.app(target=main)
+```
+  </TabItem>
+
+</Tabs>
+
+<img src="/img/docs/controls/outlined-button/outlined-buttons-with-icons.png" width="50%" />
+
+### Outlined button with `click` event
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import OutlinedButton, Page, Text
+
+
+def main(page: Page):
+    page.title = "Outlined button with 'click' event"
+
+    def button_clicked(e):
+        b.data += 1
+        t.value = f"Button clicked {b.data} time(s)"
+        page.update()
+
+    b = OutlinedButton("Button with 'click' event", on_click=button_clicked, data=0)
+    t = Text()
+
+    page.add(b, t)
+
+flet.app(target=main)
+```
+
+  </TabItem>
+
+</Tabs>
+
+<img src="/img/docs/controls/outlined-button/outlined-button-with-click-event.gif" width="50%" />
+
+### Outlined button with custom content 
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import (
+    Column,
+    Container,
+    Icon,
+    OutlinedButton,
+    Page,
+    Row,
+    Text,
+    icons,
+    padding,
+)
+
+
+def main(page: Page):
+    page.title = "Outlined buttons with custom content"
+    page.add(
+        OutlinedButton(
+            width=150,
+            content=Row(
+                [
+                    Icon(name=icons.FAVORITE, color="pink"),
+                    Icon(name=icons.AUDIOTRACK, color="green"),
+                    Icon(name=icons.BEACH_ACCESS, color="blue"),
+                ],
+                alignment="spaceAround",
+            ),
+        ),
+        OutlinedButton(
+            content=Container(
+                content=Column(
+                    [
+                        Text(value="Compound button", size=20),
+                        Text(value="This is secondary text"),
+                    ],
+                    alignment="center",
+                    spacing=5,
+                ),
+                padding=padding.all(10),
+            ),
+        ),
+    )
+
+flet.app(target=main)
+
+```
+
+  </TabItem>
+  
+</Tabs>
+
+<img src="/img/docs/controls/outlined-button/outlined-buttons-with-custom-content.png" width="40%" />
+
 
 ## Properties
 
-| Name          | Type    | Default | Description |
-| ------------- | ------- | ------- | ----------- |
-| `property1`   | string  |         | Description. |
+| Name           | Type   | Default | Description |
+| -------------- | ------ | ------- | ----------- |
+| `text`         | string |         | The text displayed on a button. |
+| `icon`         | string |         | Icon shown in the button. |
+| `iconColor`    | string |         | Icon color. |
+| `tooltip`      | string |         | The text displayed when hovering the mouse over the button |
+| `content`      | Control|         | a Control representing custom button content. |
 
 ## Events
 
 | Name      | Description |
 | --------- | ----------- |
-| `event_name` | Fires when ... |
-
-## Child controls
-
-* Something
+| `click`   | Fires when a user clicks the button.  |
+| `focus`   | Fires when the control has received focus. |
+| `blur`    | Fires when the control has lost focus. |
