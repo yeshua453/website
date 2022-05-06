@@ -197,7 +197,7 @@ If specified, the corners of the container are rounded by this radius. Border ra
 
 * `border_radius.all(value)`
 * `border_radius.horizontal(left: float = 0, right: float = 0)`
-* `border_radius. vertical(top: float = 0, bottom: float = 0)`
+* `border_radius.vertical(top: float = 0, bottom: float = 0)`
 * `border_radius.only(topLeft, topRight, bottomLeft, bottomRight)`
 
 For example:
