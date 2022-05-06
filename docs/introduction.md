@@ -11,13 +11,13 @@ import TabItem from '@theme/TabItem';
 
 Flet is a framework that allows building interactive multi-user web, desktop and mobile applications in your favorite language without prior experience in frontend development.
 
-You build a UI for your program with Flet [controls](/docs/controls) which are based on [Flutter](https://flutter.dev) by Google. Flet does not just "wrap" Flutter widgets, but adds its own "opinion" by combining smaller widgets, hiding complexities, implementing UI best-practices, applying reasonable defaults - all to ensure your apps look cool and professional without much efforts.
+You build a UI for your program with Flet [controls](/docs/controls) which are based on [Flutter](https://flutter.dev) by Google. Flet does not just "wrap" Flutter widgets, but adds its own "opinion" by combining smaller widgets, hiding complexities, implementing UI best-practices, applying reasonable defaults - all to ensure your apps look cool and professional without extra efforts.
 
 ## Flet app example
 
 At the moment you can write Flet apps in Python and other languages will be added soon.
 
-Here is a sample "Counter" app written in Python:
+Here is a sample "Counter" app:
 
 ```python title="counter.py"
 import flet
@@ -62,6 +62,29 @@ and run the program:
 ```bash
 python counter.py
 ```
+
+The app will be started in a native OS window - what a nice alternative to Electron!
+
+<div class="row">
+  <div class="col col--6" style={{textAlign: 'center'}}>
+    <h3>macOS</h3>
+    <div><img src="/img/docs/getting-started/flet-counter-macos.png" width="70%" /></div>
+  </div>
+  <div class="col col--6" style={{textAlign: 'center'}}>
+    <h3>Windows</h3>
+    <div><img src="/img/docs/getting-started/flet-counter-windows.png" width="65%" /></div>
+  </div>  
+</div>
+
+Now, if you want to run the app as a web app, just replace the last line with:
+
+```python
+flet.app(target=main, view=flet.WEB_BROWSER)
+```
+
+run again and now you instantly get a web app:
+
+<div style={{textAlign: 'center'}}><img src="/img/docs/getting-started/flet-counter-safari.png" width="50%" /></div>
 
 ## Tutorials
 

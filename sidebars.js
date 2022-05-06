@@ -30,6 +30,7 @@ module.exports = {
             'controls/text',
             'controls/icon',
             'controls/image',
+            'controls/circleavatar',
             'controls/progressbar',
             'controls/progressring',
           ]

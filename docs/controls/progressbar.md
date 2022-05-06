@@ -6,7 +6,7 @@ slug: progressbar
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Progress are used to show the completion status of an operation lasting more than 2 seconds. If the state of progress cannot be determined, use a [Spinner](spinner) instead.
+Progress are used to show the completion status of an operation lasting more than 2 seconds.
 
 ## Examples
 

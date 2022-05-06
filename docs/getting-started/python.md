@@ -1,552 +1,514 @@
 ---
-title: Create a web app in Python with Flet
+title: Creating Flet apps in Python
 sidebar_label: Creating Flet apps in Python
 slug: python
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+To write a Flet app you don't need to be front-end guru, but it's recommended to have a basic knowledge of Python and object-oriented programming.
 
-In this tutorial we will show you, step-by-step, how to create a ToDo web app in Python using Flet framework and then share it on the internet. The app is a single-file console program of just [100 lines of Python code](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py), yet it is a multi-session, modern single-page application with rich, responsive UI.
+In this guide we'll study the structure of a Flet app, learn how to output data using Flet controls, request data from a user and build basic page layouts. We will also cover some packaging and deployment options to deliver a ready app to your users.
 
-You can play with the live demo below:
+## Installing `flet` module
 
-<iframe src="https://todo-web-app-in-python.pglet.repl.co"
-        style={{
-            border: 'none',
-            width: '100%',
-            height: '400px',
-        }}/>
-
-
-## Your first Flet app
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-Install `flet` module:
+Flet requires Python 3.8 or above. To start with Flet, you need to install `flet` module first:
 
 ```bash
 pip install flet
 ```
 
-Create `hello.py` with the following contents:
+:::note
+To upgrade `flet` module run:
 
-```python title="hello.py"
+```bash
+pip install flet --upgrade
+```
+:::
+
+## Basic app structure
+
+A very minimal Flet app has the following structure:
+
+```python
 import flet
-from flet import Page, Text
+from flet import Page
 
 def main(page: Page):
-    page.add(Text("Hello, world!"))
+    # add/update controls on Page
+    pass
 
 flet.app(target=main)
 ```
 
-Run `hello.py` with Python 3 and in a new browser window you'll get:
-
-<div style={{textAlign: 'center'}}><img src="/img/docs/quickstart-hello-world.png" /></div>
-
-  </TabItem>
-</Tabs>
-
-We chose a ToDo app for the tutorial, because it covers all of the basic concepts you would need to create any web app: building a page layout, adding controls, handling events, displaying and editing lists, making reusable UI components, and deploy options.
-
-The tutorial consists of the following steps:
-
-* [Getting started with Flet](#getting-started-with-flet)
-* [Flet app structure](#flet-app-structure)
-* [Adding page controls and handling events](#adding-page-controls-and-handling-events)
-* [View, edit and delete list items](#view-edit-and-delete-list-items)
-* [Filtering list items](#filtering-list-items)
-* [Final touches](#final-touches)
-* [Deploying the app](#deploying-the-app)
-
-## Getting started with Flet
-
-To write a Flet web app you don't need to know HTML, CSS or JavaScript, but you do need a basic knowledge of Python and object-oriented programming.
-
-Flet requires Python 3.7 or above. To create a web app in Python with Flet, you need to install `flet` module first:
-
-```bash
-pip install flet
-```
-
-To start, let's create a simple hello-world app.
-
-Create `hello.py` with the following contents:
-
-```python title="hello.py"
-import flet
-from flet import Text
-
-page = flet.page()
-page.add(Text(value="Hello, world!"))
-```
-
-Run this app and you will see a new browser window with a greeting:
-
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-hello-world.png" /></p>
-
 :::note
-In this example, the page URL is a random string, because we didn't specify it in `flet.page()` call. Try changing it to `flet.page('hello')`.
+This section is intentionally called "basic" as later in this guide we'll look at more real-world approaches to app structure with reusable controls.
 :::
 
-## Flet app structure
+A typical Flet program ends with a call to `flet.app()` where the app starts waiting for new user sessions. Function `main()` is an entry point in a Flet application. It's being called on a new thread for every user session with a `Page` instance passed into it. When running Flet app in the browser a new user session is started for every opened tab or page. When running as a desktop app there is only one session created.
 
-In the [previous step](#getting-started-with-flet), we learned how to create a simple Flet page. On that page, all users work with the same contents ("**shared app**").
+`Page` is like a "canvas" specific to a user, a visual state of a user session. To build an application UI you add and remove controls to a page, update their properties. Code sample above will be displaying just a blank page to every user.
 
-:::note
+By default, Flet app starts in a native OS window, which is very handy for developing. However, you can open it in a new browser window by modifying a call to `flet.app` as following:
 
-Try adding `Textbox` control instead of `Text`:
+```python
+flet.app(target=main, view=flet.WEB_BROWSER)
+```
+
+:::info
+Internally, every Flet app is a web app and even if it's opened in a native OS window a built-in web server is still started on a background. Flet web server is called "Fletd" and by default it's listening on a random TCP port. You can specify a custom TCP port and then open the app in the browser along with desktop view:
+
+```python
+flet.app(port=8550, target=main)
+```
+
+Open `http://localhost:<port>` in your browser to see web version of your Flet app.
+:::
+
+## Controls
+
+User interface is made of **Controls** (aka widgets). To make controls visible to a user they must be added to a `Page` or inside other controls. Page is the top-most control. Nesting controls into each other could be represented as a tree with Page as a root.
+
+Controls are just regular Python classes. Create control instances via constructors with parameters matching their properties, for example:
+
+```python
+t = Text(value="Hello, world!", color="green")
+```
+
+To display control on a page add it to `controls` list of a Page and call `page.update()` to send page changes to a browser or desktop client:
 
 ```python
 import flet
-from flet import Textbox
+from flet import Page
 
-page = flet.page()
-page.add(Textbox())
+def main(page: Page):
+    t = Text(value="Hello, world!", color="green")
+    page.controls.append(t)
+    page.update()
+
+flet.app(target=main)
 ```
-
-Run the app and open its URL in multiple browser tabs. You'll see that changing Textbox contents in one tab is instantly reflected in others.
-
-:::
-
-A shared page may be useful for certain types of apps, such as dashboards, status pages, or reports. But for a ToDo app, we want every user to see their own set of tasks. To achieve this, we need to create a "**multi-user app**".
-
-Create `hello-app.py` with the following contents:
-
-```python title="hello-app.py"
-import flet
-from flet import Textbox
-
-def main(page):
-  page.add(Textbox())
-
-flet.app("hello-app", target=main)
-```
-
-While the application is running, for every new user session Flet calls `main` function with unique page contents.
 
 :::note
-To see multiple sessions in action, open the application URL in a new "incognito" browser window.
+In the following examples we will be showing just the contents of `main` function.
 :::
 
-## Adding page controls and handling events
+You can modify control properties and the UI will be updated on the next `page.update()`:
 
-Now we're ready to create a multi-user ToDo app.
+```python
+t = Text()
+page.add(t) # it's a shortcut for page.controls.add(t) and then page.update()
 
-To start, we'll need a Textbox for entering a task name, and an "Add" button with an event handler that will display a checkbox with a new task.
+for i in range(10):
+    t.value = f"Step {i}"
+    page.update()
+    sleep(1)
+```
 
-Create `todo.py` with the following contents:
+Some controls are "container" controls (like Page) which could contain other controls. For example, `Row` control allows arranging other controls in a row one-by-one:
 
-```python title="todo.py"
+```python
+page.add(
+    Row(controls=[
+        Text("A"),
+        Text("B"),
+        Text("C")
+    ])
+)
+```
+
+or `TextField` and `ElevatedButton` next to it:
+
+```python
+page.add(
+    Row(controls=[
+        TextField(label="Your name"),
+        ElevatedButton(text="Say my name!")
+    ])
+)
+```
+
+`page.update()` is smart enough to send only the changes made since its last call, so you can add a couple of new controls to the page, remove some of them, change other controls' properties and then call `page.Update()` to do a batched update, for example:
+
+```python
+for i in range(10):
+    page.controls.append(Text(f"Line {i}"))
+    if i > 4:
+        page.controls.pop(0)
+    page.update()
+    sleep(0.3)
+```
+
+Some controls, like buttons, could have event handlers reacting on a user input, for example `ElevatedButton.on_click`:
+
+```python
+def button_clicked(e):
+    page.add(Text("Clicked!"))
+
+page.add(ElevatedButton(text="Click me", on_click=button_clicked))
+```
+
+and more advanced example for a simple To-Do:
+
+```python
 import flet
-from flet import Textbox, Button, Checkbox
+from flet import Checkbox, ElevatedButton, Row, TextField
 
 def main(page):
-    
     def add_clicked(e):
         page.add(Checkbox(label=new_task.value))
 
-    new_task = Textbox(placeholder='Whats needs to be done?')
+    new_task = TextField(hint_text="Whats needs to be done?", width=300)
+    page.add(Row([new_task, ElevatedButton("Add", on_click=add_clicked)]))
 
-    page.add(
-        new_task,
-        Button('Add', on_click=add_clicked)
-    )
-
-flet.app("todo-app", target=main)
+flet.app(target=main)
 ```
 
-Run the app and you should see a page like this:
-
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-1.png" /></p>
-
-### Page layout
-
-Now let's make the app look nice! We want the entire app to be at the top center of the page, stretched over 70% of the page width. The textbox and the button should be aligned horizontally, and take up full app width:
-
-<p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-1.svg" /></p>
-
-`Stack` is a container control that is used to lay other controls out on a page. `Stack` can be vertical (default) or horizontal, and can contain other stacks.
-
-Replace `todo.py` contents with the following:
-
-```python title="todo.py"
-import flet
-from flet import Stack, Textbox, Button, Checkbox
-
-def main(page):
-
-    page.title = "ToDo App"
-    page.horizontal_align = 'center'
-    page.update() # needs to be called every time "page" control is changed
-    
-    def add_clicked(e):
-        tasks_view.controls.append(Checkbox(label=new_task.value))
-        tasks_view.update()
-
-    new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
-    tasks_view = Stack()
-
-    page.add(Stack(width='70%', controls=[
-        Stack(horizontal=True, on_submit=add_clicked, controls=[
-            new_task,
-            Button('Add', on_click=add_clicked)
-        ]),
-        tasks_view
-    ]))
-
-flet.app("todo-app", target=main)
-```
-
-Run the app and you should see a page like this:
-
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-2.png" /></p>
-
-### Reusable UI components
-
-While we could continue writing our app in the `main` function, the best practice would be to create a reusable UI component. Imagine you are working on an app header, a side menu, or UI that will be a part of a larger project. Even if you can't think of such uses right now, we still recommend creating all your web apps with composability and reusability in mind.
-
-To make a reusable ToDo app component, we are going to encapsulate its state and presentation logic in a separate class: 
-
-```python title="todo.py"
-import flet
-from flet import Stack, Textbox, Button, Checkbox
-
-class TodoApp():
-    def __init__(self):
-        self.new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
-        self.tasks_view = Stack()
-
-        # application's root control (i.e. "view") containing all other controls
-        self.view = Stack(width='70%', controls=[
-            Stack(horizontal=True, on_submit=self.add_clicked, controls=[
-                self.new_task,
-                Button('Add', on_click=self.add_clicked)
-            ]),
-            self.tasks_view
-        ])
-
-    def add_clicked(self, e):
-        self.tasks_view.controls.append(Checkbox(label=self.new_task.value))
-        self.tasks_view.update()
-
-def main(page):
-    page.title = "ToDo App"
-    page.horizontal_align = 'center'
-    page.update()
-
-    # create application instance
-    app = TodoApp()
-
-    # add application's root control to the page
-    page.add(app.view)
-
-flet.app("todo-app", target=main)
-```
-
-:::note
-Try adding two `TodoApp` components to the page:
-
-```python
-# create application instance
-app1 = TodoApp()
-app2 = TodoApp()
-
-# add application's root control to the page
-page.add(app1.view, app2.view)
-```
+:::info
+Flet implements *imperative* UI model where you "manually" build application UI with stateful controls and then mutate it by updating control properties. Flutter implements *declarative* model where UI is automatically re-built on application data changes.
+Managing application state in modern frontend applications is inherently complex task and Flet's "old-school" approach could be more attractive to programmers without frontend experience.
 :::
 
-## View, edit and delete list items
+### `visible` property
 
-In the [previous step](#adding-page-controls-and-handling-events), we created a basic ToDo app with task items shown as checkboxes. Let's improve the app by adding "Edit" and "Delete" buttons next to a task name. The "Edit" button will switch a task item to edit mode.
+Every control has `visible` property which is `true` by default - control is rendered on the page. Setting `visible` to `false` completely prevents control (and all its children if any) from rendering on a page canvas. Hidden controls cannot be focused or selected with a keyboard or mouse and they do not emit any events.
 
-<p style={{ textAlign: 'center' }}><img style={{ width: '90%' }} src="/img/docs/tutorial/todo-diagram-2.svg" /></p>
+### `disabled` property
 
-Each task item is represented by two stacks: `display_view` stack with Checkbox, "Edit" and "Delete" buttons and `edit_view` stack with Textbox and "Save" button. `view` stack serves as a container for both `display_view` and `edit_view` stacks.
+Every control has `disabled` property which is `false` by default - control and all its children are enabled.
+`disabled` property is mostly used with data entry controls like `TextField`, `Dropdown`, `Checkbox`, buttons.
+However, `disabled` could be set to a parent control and its value will be propagated down to all children recursively.
 
-Before this step, the code was short enough to be fully included in the tutorial. Going forward, we will be highlighting only the changes introduced in a step.
-
-Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-delete.py). Below we will explain the changes we've done to implement view, edit, and delete tasks.
-
-To encapsulate task item views and actions, we introduced a new `Task` class:
+For example, if you have a form with multiple entry control you can set `disabled` property for each control individually:
 
 ```python
-class Task():
-    def __init__(self, name):
-        self.display_task = Checkbox(value=False, label=name)
-        self.edit_name = Textbox(width='100%')
-
-        self.display_view = Stack(horizontal=True, horizontal_align='space-between',
-                vertical_align='center', controls=[
-            self.display_task,
-            Stack(horizontal=True, gap='0', controls=[
-                Button(icon='Edit', title='Edit todo', on_click=self.edit_clicked),
-                Button(icon='Delete', title='Delete todo')]),
-            ])
-        
-        self.edit_view = Stack(visible=False, horizontal=True, horizontal_align='space-between',
-                vertical_align='center', controls=[
-            self.edit_name, Button(text='Save', on_click=self.save_clicked)
-            ])
-        self.view = Stack(controls=[self.display_view, self.edit_view])
-
-    def edit_clicked(self, e):
-        self.edit_name.value = self.display_task.label
-        self.display_view.visible = False
-        self.edit_view.visible = True
-        self.view.update()
-
-    def save_clicked(self, e):
-        self.display_task.label = self.edit_name.value
-        self.display_view.visible = True
-        self.edit_view.visible = False
-        self.view.update()
+first_name = TextField()
+last_name = TextField()
+first_name.disabled = True
+last_name.disabled = True
+page.add(first_name, last_name)
 ```
 
-Additionally, we changed `TodoApp` class to create and hold `Task` instances when the "Add" button is clicked:
+or you can put form controls into container, e.g. `Column` and then set `disabled` for the column:
 
 ```python
-class TodoApp():
-    def __init__(self):
-        self.tasks = []
-        # ... the rest of constructor is the same
-
-    def add_clicked(self, e):
-        task = Task(self.new_task.value)
-        self.tasks.append(task)
-        self.tasks_view.controls.append(task.view)
-        self.new_task.value = ''
-        self.view.update()
+first_name = TextField()
+last_name = TextField()
+c = Column(controls=[
+    first_name,
+    last_name
+])
+c.disabled = True
+page.add(c)
 ```
 
-For "Delete" task operation, we implemented `delete_task()` method in `TodoApp` class which accepts task instance as a parameter:
+## Displaying data
+
+### Text
+
+`Text` control is used to output textual data. Its main properties are `value` and `size`, but it also has a number of formatting properties to control its appearence. For example:
 
 ```python
-class TodoApp():
-    
-    # ...
-
-    def delete_task(self, task):
-        self.tasks.remove(task)
-        self.tasks_view.controls.remove(task.view)
-        self.view.update()
+t = Text(
+    value="This is a Text control sample",
+    size=30,
+    color="white",
+    bgcolor="pink",
+    weight="bold",
+    italic=True,
+)
+page.add(t)
 ```
 
-Then, we passed a reference to `TodoApp` into Task constructor and called `TodoApp.delete_task()` in "Delete" button event handler:
+#### Text styles
 
-```python {2-3,11,16-17,24}
-class Task():
-    def __init__(self, app, name):
-        self.app = app
-        
-        # ...
 
-        self.display_view = Stack(horizontal=True, horizontal_align='space-between', vertical_align='center', controls=[
-            self.display_task,
-            Stack(horizontal=True, gap='0', controls=[
-                Button(icon='Edit', title='Edit todo', on_click=self.edit_clicked),
-                Button(icon='Delete', title='Delete todo', on_click=self.delete_clicked)]),
-            ])
+### Icon
 
-        # ...        
+Icons list
 
-    def delete_clicked(self, e):
-        self.app.delete_task(self)
+Link to an app
 
-class TodoApp():
+### Image
 
-    # ...
+Note about CORS
+Side-loading assets
 
-    def add_clicked(self, e):
-        task = Task(self, self.new_task.value)
-        # ...
+### ProgressBar
+
+Use `Progress` control to display a progress bar. For example, to display a progress of imaginary copy operation:
+
+```powershell
+$prog1 = Progress -Label "Copying /file1.txt to /file2.txt" -Width "30%" -BarHeight 4
+$page.Add($prog1)
+
+for($i = 0; $i -le 100; $i=$i+5) {
+  $prog1.Value = $i
+  $prog1.Update()
+  Start-Sleep -Milliseconds 100
+}
 ```
 
-Run the app and try to edit and delete tasks:
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/progress-copy.gif" /></div>
 
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-3.png" /></p>
+You can use `Description` property to display the progress of some multi-step operation:
 
-## Filtering list items
+```powershell
+$prog2 = Progress -Label "Create new account" -Width "30%"
+$page.Add($prog2)
 
-We already have a functional ToDo app where we can create, edit, and delete tasks. To be even more productive, we want to be able to filter tasks by their status.
-
-Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-with-filter.py). Below we will explain the changes we've done to implement filtering.
-
-`Tabs` control is used to display filter:
-
-```python {1,11-14,22}
-from flet import Tabs, Tab
-
-# ...
-
-class TodoApp():
-    def __init__(self):
-        self.tasks = []
-        self.new_task = Textbox(placeholder='Whats needs to be done?', width='100%')
-        self.tasks_view = Stack()
-
-        self.filter = Tabs(value='all', on_change=self.tabs_changed, tabs=[
-                Tab(text='all'),
-                Tab(text='active'),
-                Tab(text='completed')])
-
-        self.view = Stack(width='70%', controls=[
-            Text(value='Todos', size='large', align='center'),
-            Stack(horizontal=True, on_submit=self.add_clicked, controls=[
-                self.new_task,
-                Button(primary=True, text='Add', on_click=self.add_clicked)]),
-            Stack(gap=25, controls=[
-                self.filter,
-                self.tasks_view
-            ])
-        ])
+$steps = @('Preparing environment...', 'Collecting information...', 'Performing operation...', 'Complete!')
+for($i = 0; $i -lt $steps.Length; $i++) {
+    $prog2.Description = $steps[$i]
+    $prog2.Value = 100 / ($steps.Length - 1) * $i
+    $page.Update()
+    Start-Sleep -Seconds 1
+}
 ```
 
-To display different lists of tasks depending on their statuses, we could maintain three lists with "All", "Active" and "Completed" tasks. We, however, chose an easier approach where we maintain the same list and only change a task's visibility depending on the status.
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/progress-multi-step.gif" /></div>
 
-In `TodoApp` class we introduced `update()` method which iterates through all the tasks and updates their `view` Stack's `visible` property depending on the status of the task:
 
-```python
-class TodoApp():
+### ProgressRing
 
-    # ...
+Use `Spinner` control to visualize an indeterminate progress:
 
-    def update(self):
-        status = self.filter.value
-        for task in self.tasks:
-            task.view.visible = (status == 'all'
-                or (status == 'active' and task.display_task.value == False)
-                or (status == 'completed' and task.display_task.value))
-        self.view.update()
+```powershell
+$sp = Spinner -Label "Please wait while the process is running..." -LabelPosition Right
+$page.Add($sp)
 ```
 
-Filtering should occur when we click on a tab or change a task status. `TodoApp.update()` method is called when Tabs selected value is changed or Task item checkbox is clicked:
+<div style={{textAlign: 'center'}}><img src="/img/docs/powershell-tutorial/spinner-animation.gif" /></div>
 
-```python
-class TodoApp():
+## Layout
 
-    # ...
+Stack...
+Row
+Column
+Stack
+Container
+padding, margin, border, etc.
 
-    def tabs_changed(self, e):
-        self.update()
+## Colors
 
-class Task():
-    def __init__(self, app, name):
-        self.display_task = Checkbox(value=False, label=name, on_change=self.status_changed)
-        # ...
+Colors list
+Link to an app
 
-    def status_changed(self, e):
-        self.app.update() 
+## Getting user input
+
+Making interactive web apps with Flet is a breeze! It's not just limited to displaying data, but you can request an input from a user and respond to various events generated by page controls.
+
+### Button
+
+`Button` is the most essential input control which generates `click` event when pressed:
+
+```powershell
+$btn = Button "Click me!"
+$page.Add($btn)
 ```
 
-Run the app and try filtering tasks by clicking on the tabs:
+[SCREENSHOT?]
 
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', borderLeft: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-filtering.gif" /></p>
+All events generated by controls on a web page are continuously sent back to your script, so how do you respond to a button click?
 
-## Final touches
+### Event handlers
 
-Our Todo app is almost complete now. As a final touch, we will add a footer (`Stack` control) displaying the number of incomplete tasks (`Text` control) and a "Clear completed" button.
+"Counter" app with `Switch-FletEvents`:
 
-Copy the entire code for this step from [here](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py). Below we highlighted the changes we've done to implement the footer:
+```powershell
+Import-Module flet
+$page = Connect-FletPage -Name "counter"
 
-```python {5,15-18,26,31-33,36-39}
-class TodoApp():
-    def __init__(self):
-        # ...
+try {
+    $page.Clean()
 
-        self.items_left = Text('0 items left')
+    $num_txt = TextBox -Value 0
 
-        self.view = Stack(width='70%', controls=[
-            Text(value='Todos', size='large', align='center'),
-            Stack(horizontal=True, on_submit=self.add_clicked, controls=[
-                self.new_task,
-                Button(primary=True, text='Add', on_click=self.add_clicked)]),
-            Stack(gap=25, controls=[
-                self.filter,
-                self.tasks_view,
-                Stack(horizontal=True, horizontal_align='space-between', vertical_align='center', controls=[
-                    self.items_left,
-                    Button(text='Clear completed', on_click=self.clear_clicked)
-                ])
-            ])
-        ])
+    $minus_btn = Button "-" -OnClick {
+      $num_txt.Value = [int]$num_txt.Value - 1
+      $page.Update()
+    }
+  
+    $plus_btn = Button "+" -OnClick {
+      $num_txt.Value = [int]$num_txt.Value + 1
+      $page.Update()
+    }
+  
+    $page.Add((Stack -Horizontal -Controls @(
+      $minus_btn
+      $num_txt
+      $plus_btn
+    )))
 
-    # ...
-
-    def update(self):
-        status = self.filter.value
-        count = 0
-        for task in self.tasks:
-            task.view.visible = (status == 'all'
-                or (status == 'active' and task.display_task.value == False)
-                or (status == 'completed' and task.display_task.value))
-            if task.display_task.value == False:
-                count += 1
-        self.items_left.value = f"{count} active item(s) left"
-        self.view.update()        
-
-    def clear_clicked(self, e):
-        for task in self.tasks[:]:
-            if task.display_task.value == True:
-                self.delete_task(task)
+    Switch-FletEvents
+}
+finally {
+    $page.Close()
+}
 ```
 
-Run the app:
+### Textbox
 
-<p style={{ textAlign: 'center' }}><img style={{ width: '50%', border: 'solid 1px #999' }} src="/img/docs/tutorial/todo-app-4.png" /></p>
+Flet provides a number of [controls](/docs/controls) for building forms: [TextField](/docs/controls/textfield), [Checkbox](/docs/controls/checkbox), [Dropdown](/docs/controls/dropdown), [ElevatedButton](/docs/controls/elevatedbutton).
 
-## Deploying the app
+Let's ask a user for a name:
 
-Congratulations! You have created your first Python web app with Flet, and it looks awesome!
+```powershell title="greeter.ps1"
+Import-Module flet
 
-Now it's time to share your app with the world!
+Connect-FletPage "greeter"
 
-### Instant sharing
-
-Flet is not only a framework for building web apps, but it is also a service for hosting apps' UI.
-You can have the application running on your computer while its UI is streaming to Flet service in real-time.
-
-To make the app instantly available on the Internet, just add `web=True` parameter to `flet.app()` call at the very end of the program:
-
-```python
-# ...
-
-flet.app(target=main, web=True)
+Invoke-Flet "clean"
+Invoke-Flet "add textbox label='Your name' description='Please provide your full name'"
+Invoke-Flet "add button primary text='Say hello'"
 ```
 
-A new browser windows will be opened with the URL like this:
+### Checkbox
 
+TBD
+
+### Dropdown
+
+TBD
+
+## Collections
+
+You can use `Column` and `Row` in the most cases.
+
+
+Lot of records:
+
+### ListView
+
+### GridView
+
+`control.clean()` optimization.
+
+Updating in batches (i % 100) optimization.
+
+## Deploying web app
+
+Flet app can be deployed as a "standalone" web app which means both your Python app and Flet web server are deployed together as a bundle.
+
+Flet apps use WebSockets for real-time partial updates of their UI and sending events back to your program.
+When choosing a hosting provider for your Flet app you should pay attention to their support of WebSockets. Sometimes WebSockets are not allowed or come as a part of more expensive offering, sometimes there is a proxy that periodically breakes WebSocket connection by a timeout (Flet implements re-connection logic, but it could be unpleasant behavior for users of your app anyway).
+
+Another important factor while choosing a hosting provider for Flet app is latency. Every user action on UI sends a message to Flet app and the app sends udpdated UI back to user. Make sure your hosting provider has multiple data centers, so you can run your app closer to the majority of your users.
+
+:::note
+We are not affiliated with hosting providers in this section - we just use their service and love it.
+:::
+
+### Fly.io
+
+[Fly.io](https://fly.io) has robust WebSocket support and can deploy your app to a [data center](https://fly.io/docs/reference/regions/) that is close to your users. They have very attractive pricing with a [generous free tier](https://fly.io/docs/about/pricing/#free-allowances) which allows you to host up to 3 applications for free.
+
+To get started with Fly install [flyctl](https://fly.io/docs/getting-started/installing-flyctl/) and then authenticate:
+
+    flyctl auth login
+
+To deploy the app with `flyctl` you have to add the following 3 files into the folder with your Python app.
+
+Create `requirements.txt` with a list of application dependencies. At minimum it should contain `flet` module:
+
+```txt title="requirements.txt"
+flet>=0.1.16
 ```
-https://app.flet.dev/public/{random}
+
+Create `fly.toml` describing Fly application:
+
+```toml title="fly.toml" {1,8}
+app = "<your-app-name>"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  FLET_SERVER_PORT = "8080"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
 ```
+
+Replace `<your-app-name>` with desired application name which will be also used in application URL, such as `https://<your-app-name>.fly.dev`.
+
+Note we are setting the value of `FLET_SERVER_PORT` environment variable to `8080` which is an internal TCP port Flet web app is going to run on.
+
+Create `Dockerfile` containing the commands to build your application container:
+
+```Dockerfile title="Dockerfile"
+FROM python:3-alpine
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["python", "./main.py"]
+```
+
+`main.py` is a file with your Python program.
+
+:::note
+Fly.io deploys every app as a Docker container, but a great thing about Fly is that it provides a free remote Docker builder, so you don't need Docker installed on your machine.
+:::
+
+Next, switch command line to a folder with your app and run the following command to create and initialize a new Fly app:
+
+    flyctl apps create --name <your-app-name>
+
+Deploy the app by running:
+
+    flyctl deploy
+
+That's it! Open your app in the browser by running:
+
+    flyctl apps open
 
 ### Replit
 
-Instant sharing is a great option to quickly share an app on the web, but it requires your computer to be on all the time.
+[Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some performance limitations.
 
-[Replit](https://replit.com/) is an online IDE and hosting platform for web apps written in any language. Their free tier allows running any number of apps with some limitations.
-
-To run your ToDo app on Replit:
+To run your app on Replit:
 
 * [Sign up](https://replit.com/signup?from=landing) on Replit.
 * Click "New repl" button.
-* Select "Python" language from a list and provide repl name, e.g. `my-todo`.
+* Select "Python" language from a list and provide repl name, e.g. `my-app`.
 * Click "Packages" tab and search for `flet` package; select its latest version.
-* Switch back to "Files" tab and copy-paste the [code of Todo app](https://github.com/pglet/examples/blob/main/python/todo/todo-complete.py) into `main.py`.
-* Update `flet.app()` call (at the very end of the program) to:
-
-```python
-flet.app("index", target=main)
-```
-
-* Run the app. Now both the application code and UI are running on Replit service as a "standalone" app.
-
-:::note
-We are not affiliated with Replit - we just love the service. Todo app demo for this tutorial is [hosted on Replit](https://replit.com/@pglet/ToDo-web-app-in-Python) and you can just "fork" it there and play.
-:::
+* Click "Secrets" tab and add `FLET_SERVER_PORT` variable with value `5000`.
+* Switch back to "Files" tab and copy-paste your app into `main.py`.
+* Run the app. Enjoy.
 
 ## Summary
 
