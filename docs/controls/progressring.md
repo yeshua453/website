@@ -15,37 +15,56 @@ There are two kinds of circular progress indicators:
 
 ## Examples
 
-### Spinner sizes
-
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
+from time import sleep
 import flet
-from flet import Spinner, Text
+from flet import Column, Page, ProgressRing, Row, Text
 
-with flet.page("spinner-size") as page:
+def main(page: Page):
+    pr = ProgressRing(width=16, height=16, stroke_width=2)
 
     page.add(
-        Text("Spinner sizes", size="xLarge"),
-        Spinner("Extra small spinner", size="xSmall", label_position="left"),
-        Spinner("Small spinner", size="small", label_position="left"),
-        Spinner("Medium spinner", size="medium", label_position="left"),
-        Spinner("Large spinner", size="large", label_position="left"),
+        Text("Circular progress indicator", style="headlineSmall"),
+        Row([pr, Text("Wait for the completion...")]),
+        Text("Indeterminate cicrular progress", style="headlineSmall"),
+        Column(
+            [ProgressRing(), Text("I'm going to run for ages...")],
+            horizontal_alignment="center",
+        ),
     )
+
+    for i in range(0, 101):
+        pr.value = i * 0.01
+        sleep(0.1)
+        page.update()
+
+flet.app(target=main)
 ```
   </TabItem>
 </Tabs>
 
-<img src="/img/docs/controls/spinner/spinner-size.gif" width="25%" />
-
 
 ## Properties
 
-| Name           | Type    | Default | Description |
-| -------------- | ------- | ------- | ----------- |
-| `value`        | number  |         | The value of this progress indicator. A value of 0.0 means no progress and 1.0 means that progress is complete. The value will be clamped to be in the range 0.0-1.0. If null, this progress indicator is indeterminate, which means the indicator displays a predetermined animation that does not indicate how much actual progress is being made. |
-| `stroke_width` | number  | `medium`| The width of the line used to draw the circle. |
-| `color`        | string  |         | The progress indicator's color. |
-| `bgcolor`      | string  |         | Color of the circular track being filled by the circular indicator. |
-| `tooltip`      | string  |         | The text displayed when hovering the mouse over the control. |
+### `value`
+
+The value of this progress indicator. A value of 0.0 means no progress and 1.0 means that progress is complete. The value will be clamped to be in the range 0.0-1.0. If null, this progress indicator is indeterminate, which means the indicator displays a predetermined animation that does not indicate how much actual progress is being made.
+
+### `stroke_width`
+
+The width of the line used to draw the circle.
+
+### `color`
+
+The progress indicator's color.
+
+### `bgcolor`
+
+Color of the circular track being filled by the circular indicator.
+
+### `tooltip`
+
+The text displayed when hovering the mouse over the control.
