@@ -15,8 +15,6 @@ If `foreground_image_url` fails then `background_image_url` is used. If `backgro
 
 ## Examples
 
-### Example 1
-
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
