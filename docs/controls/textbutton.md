@@ -147,17 +147,32 @@ flet.app(target=main)
 
 ## Properties
 
-| Name           | Type   | Default | Description |
-| -------------- | ------ | ------- | ----------- |
-| `text`         | string |         | The text displayed on a button. |
-| `icon`         | string |         | Icon shown in the button. |
-| `iconColor`    | string |         | Icon color. |
-| `tooltip`      | string |         | The text displayed when hovering the mouse over the button. |
-| `autofocus`    | bool   | False   | True if the control will be selected as the initial focus. If there is more than one control on a page with autofocus set, then the first one added to the page will get focus. |
-| `content`      | Control|         | a Control representing custom button content. |
+### `text`
+
+The text displayed on a button.
+
+### `icon`
+
+Icon shown in the button.
+
+### `icon_color`
+
+Icon color.
+
+### `tooltip`
+
+The text displayed when hovering the mouse over the button.
+
+### `autofocus`
+
+True if the control will be selected as the initial focus. If there is more than one control on a page with autofocus set, then the first one added to the page will get focus.
+
+### `content`
+
+A Control representing custom button content.
 
 ## Events
 
-| Name      | Description |
-| --------- | ----------- |
-| `click`   | Fires when a user clicks the button.  |
+### `on_click`
+
+Fires when a user clicks the button.
