@@ -3,10 +3,11 @@ title: Text
 sidebar_label: Text
 slug: text
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 Text is a control for displaying text.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Examples
 

@@ -1,6 +1,7 @@
 ---
 title: Creating Flet apps in Python
-sidebar_label: Creating Flet apps in Python
+description: Learn how to build Flet apps in Python.
+sidebar_label: Python
 slug: python
 ---
 

@@ -4,10 +4,10 @@ sidebar_label: GridView
 slug: gridview
 ---
 
+A scrollable, 2D array of controls.
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-Control description goes here.
 
 ## Examples
 

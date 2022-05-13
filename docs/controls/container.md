@@ -4,10 +4,10 @@ sidebar_label: Container
 slug: container
 ---
 
+Container allows to decorate a control with background color and border and position it with padding, margin and alignment. 
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-Container allows to decorate a control with background color and border and position it with padding, margin and alignment. 
 
 ## Examples
 

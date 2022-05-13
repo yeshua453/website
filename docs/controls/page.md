@@ -4,9 +4,12 @@ sidebar_label: Page
 slug: page
 ---
 
-Page is the top most container for all other controls. It is is automatically created when a new user session started.
+Page is the top most container for all other controls.
 
-From layout perspective the Page represents a [Column](column) control, so it has a similar behavior and shares same properties.
+A page instance is automatically created when a new user session started. From layout perspective the Page represents a [Column](column) control, so it has a similar behavior and shares same properties.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Properties
 
@@ -16,32 +19,56 @@ A list of Controls to display on the Page.
 
 For example, to add a new control to a page:
 
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
 ```python
 page.controls.append(Text("Hello!"))
 page.update()
 ```
 
+  </TabItem>
+</Tabs>
+
 or to get the same result as above using `page.add()` shortcut method:
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
 
 ```python
 page.add(Text("Hello!"))
 ```
 
+  </TabItem>
+</Tabs>
+
 To remove the top most control on the page:
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
 
 ```python
 page.controls.pop()
 page.update()
 ```
 
+  </TabItem>
+</Tabs>
+
 ### `title`
 
 A title of browser or native OS window, for example:
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
 
 ```python
 page.title = "My awesome app"
 page.update()
 ```
+
+  </TabItem>
+</Tabs>
 
 ### `horizontal_alignment`
 
@@ -63,10 +90,16 @@ Vertical spacing between controls on the Page. Default value is 10 virtual pixel
 
 A space between page contents and its edges. Default value is 10 pixels from each side. To set zero padding:
 
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
 ```python
 page.padding = 0
 page.update()
 ```
+
+  </TabItem>
+</Tabs>
 
 See Container's [`padding`](/docs/controls/container#padding) property for more information and possible values.
 
@@ -93,12 +126,18 @@ A theme to use: `system` (default), `light` or `dark`.
 
 Set this property to an instance of `theme.Theme` to customize light theme. Currently, a theme can only be automatically generated from a "seed" color. For example, to generate light theme from a green color:
 
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
 ```python
 from flet import theme
 
 page.theme = theme.Theme(color_scheme_seed="green")
 page.update()
 ```
+
+  </TabItem>
+</Tabs>
 
 ### `dark_theme`
 
@@ -108,14 +147,23 @@ Set this property to an instance of `theme.Theme` to customize dark theme.
 
 Changing this property sends its value to a clipboard on a client side (user's web browser or a desktop), for example:
 
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
 ```python
 page.clipboard = "This value comes from Flet app"
 page.update()
 ```
 
+  </TabItem>
+</Tabs>
+
 ### `splash`
 
 A `Control` that will be displayed on top of Page contents. [`ProgressBar`](/docs/controls/progressbar) or [`ProgressRing`](/docs/controls/progressring) could be used as an indicator for some lengthy operation, for example:
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
 
 ```python
 from time import sleep
@@ -137,6 +185,9 @@ def main(page):
 
 flet.app(target=main)
 ```
+
+  </TabItem>
+</Tabs>
 
 ### `floating_action_button`
 
@@ -172,12 +223,18 @@ A height of a browser or native OS window containing Flet app. This property is 
 
 Fires when a browser or native OS window containing Flet app is resized by a user, for example:
 
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
 ```python
 def page_resize(e):
     print("New page size:", page.window_width, page.window_height)
 
 page.on_resize = page_resize
 ```
+
+  </TabItem>
+</Tabs>
 
 ### `on_connect`
 

@@ -4,11 +4,12 @@ sidebar_label: Column
 slug: column
 ---
 
+A control that displays its children in a vertical array.
+
+To cause a child control to expand and fill the available vertical space set its `expand` property.
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-A control that displays its children in a vertical array.
-To cause a child control to expand and fill the available vertical space set its `expand` property.
 
 ## Examples
 

@@ -3,10 +3,13 @@ title: VerticalDivider
 sidebar_label: VerticalDivider
 slug: verticaldivider
 ---
+
+A thin vertical line, with padding on either side.
+
+In the material design language, this represents a divider.
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-A thin horizontal line, with padding on either side. In the material design language, this represents a divider.
 
 ## Examples
 
@@ -100,13 +103,13 @@ flet.app(target=main)
 
 ## Properties
 
-### `height`
+### `width`
 
-The divider's height extent. The divider itself is always drawn as a horizontal line that is centered within the height specified by this value. If this is null, then this defaults to `16.0`.
+The divider's width. The divider itself is always drawn as a vertical line that is centered within the width specified by this value. If this is null, then this defaults to `16.0`.
 
 ### `thickness`
 
-The thickness of the line drawn within the divider. A divider with a thickness of `0.0` is always drawn as a line with a height of exactly one device pixel. If this is null, then this defaults to `0.0`.
+The thickness of the line drawn within the divider. A divider with a thickness of `0.0` is always drawn as a line with a width of exactly one device pixel. If this is null, then this defaults to `0.0`.
 
 ### `color`
 

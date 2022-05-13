@@ -3,11 +3,13 @@ title: Row
 sidebar_label: Row
 slug: row
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 A control that displays its children in a horizontal array.
+
 To cause a child control to expand and fill the available horizontal space set its `expand` property.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Examples
 

@@ -3,10 +3,13 @@ title: Divider
 sidebar_label: Divider
 slug: divider
 ---
+
+A thin horizontal line, with padding on either side.
+
+In the material design language, this represents a divider.
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-A thin horizontal line, with padding on either side. In the material design language, this represents a divider.
 
 ## Examples
 
