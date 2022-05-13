@@ -7,7 +7,7 @@ slug: textbutton
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Use text buttons on toolbars [link TBD], in dialogs [link TBD], or inline with other content.
+Text buttons are used for the lowest priority actions, especially when presenting multiple options. Text buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible. See [Material 3 buttons](https://m3.material.io/components/buttons/overview) for more info.
 
 ## Examples
 
@@ -147,17 +147,32 @@ flet.app(target=main)
 
 ## Properties
 
-| Name           | Type   | Default | Description |
-| -------------- | ------ | ------- | ----------- |
-| `text`         | string |         | The text displayed on a button. |
-| `icon`         | string |         | Icon shown in the button. |
-| `iconColor`    | string |         | Icon color. |
-| `tooltip`      | string |         | The text displayed when hovering the mouse over the button. |
-| `autofocus`    | bool   | False   | True if the control will be selected as the initial focus. If there is more than one control on a page with autofocus set, then the first one added to the page will get focus. |
-| `content`      | Control|         | a Control representing custom button content. |
+### `text`
+
+The text displayed on a button.
+
+### `icon`
+
+Icon shown in the button.
+
+### `icon_color`
+
+Icon color.
+
+### `tooltip`
+
+The text displayed when hovering the mouse over the button.
+
+### `autofocus`
+
+True if the control will be selected as the initial focus. If there is more than one control on a page with autofocus set, then the first one added to the page will get focus.
+
+### `content`
+
+A Control representing custom button content.
 
 ## Events
 
-| Name      | Description |
-| --------- | ----------- |
-| `click`   | Fires when a user clicks the button.  |
+### `on_click`
+
+Fires when a user clicks the button.
