@@ -7,7 +7,7 @@ slug: textbutton
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Use text buttons on toolbars [link TBD], in dialogs [link TBD], or inline with other content.
+Text buttons are used for the lowest priority actions, especially when presenting multiple options. Text buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible. See [Material 3 buttons](https://m3.material.io/components/buttons/overview) for more info.
 
 ## Examples
 

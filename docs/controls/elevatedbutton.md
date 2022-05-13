@@ -7,7 +7,7 @@ slug: elevatedbutton
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Use elevated buttons to add dimension to otherwise mostly flat layouts, e.g. in long busy lists of content, or in wide spaces. Avoid using elevated buttons on already-elevated content such as dialogs or cards.
+Elevated buttons are essentially filled tonal buttons with a shadow. To prevent shadow creep, only use them when absolutely necessary, such as when the button requires visual separation from a patterned background. See [Material 3 buttons](https://m3.material.io/components/buttons/overview) for more info.
 
 ## Examples
 
@@ -160,6 +160,18 @@ flet.app(target=main)
 ### `text`
 
 The text displayed on a button.
+
+### `color`
+
+Button's text color.
+
+### `bgcolor`
+
+Button's background color.
+
+### `elevation`
+
+Button's elevation.
 
 ### `icon`
 

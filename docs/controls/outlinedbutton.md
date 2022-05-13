@@ -7,7 +7,8 @@ slug: outlinedbutton
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Outlined buttons are medium-emphasis buttons. They contain actions that are important, but they aren’t the primary action in an app.
+Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+Outlined buttons pair well with filled buttons to indicate an alternative, secondary action. See [Material 3 buttons](https://m3.material.io/components/buttons/overview) for more info.
 
 ## Examples
 

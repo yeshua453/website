@@ -23,6 +23,8 @@ module.exports = {
             'controls/stack',
             'controls/listview',
             'controls/gridview',
+            'controls/divider',
+            'controls/verticaldivider',
           ]
         },
         {
@@ -38,10 +40,13 @@ module.exports = {
         {
           'Buttons': [
             'controls/elevatedbutton',
-            'controls/floatingactionbutton',
-            'controls/iconbutton',
+            'controls/filledbutton',
+            'controls/filledtonalbutton',
             'controls/outlinedbutton',
             'controls/textbutton',
+            'controls/iconbutton',
+            'controls/floatingactionbutton',
+            'controls/popupmenubutton',
           ]
         },
         {
