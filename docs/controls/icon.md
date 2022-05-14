@@ -3,10 +3,11 @@ title: Icon
 sidebar_label: Icon
 slug: icon
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 Displays a Material icon.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 [Icons browser](https://flet-icons-browser.fly.dev/#/)
 

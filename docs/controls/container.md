@@ -4,10 +4,54 @@ sidebar_label: Container
 slug: container
 ---
 
+Container allows to decorate a control with background color and border and position it with padding, margin and alignment. 
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Container allows to decorate a control with background color and border and position it with padding, margin and alignment. 
+## Examples
+
+### Containers with different properties
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import Container, ElevatedButton, OutlinedButton, Page, colors
+
+
+def main(page: Page):
+    page.title = "Containers with background color"
+
+    c1 = Container(
+        content=ElevatedButton("Elevated Button in Container"),
+        bgcolor=colors.YELLOW,
+        padding=5,
+    )
+
+    c2 = Container(
+        content=ElevatedButton(
+            "Elevated Button with opacity=0.5 in Container", opacity=0.5
+        ),
+        bgcolor=colors.YELLOW,
+        padding=5,
+    )
+
+    c3 = Container(
+        content=OutlinedButton("Outlined Button in Container"),
+        bgcolor=colors.YELLOW,
+        padding=5,
+    )
+    page.add(c1, c2, c3)
+
+
+flet.app(target=main)
+```
+  </TabItem>
+</Tabs>
+
+<img src="/img/docs/controls/container/containers-background-color.png" width="40%" />
 
 ## Properties
 
@@ -87,16 +131,6 @@ Background color of the container.
 
 A color value could be a hex value in `#ARGB` format (e.g. `#FFCC0000`), `#RGB` format (e.g. `#CC0000`) or a named color from `flet.colors` module.
 
-For example:
-
-```python
-from flet import colors
-
-container_1.bgcolor = '#FFCC0000'
-container_2.bgcolor = '#CC0000'
-container_3.bgcolor = colors.RED
-```
-
 ### `border`
 
 A border to draw above the background color.
@@ -130,47 +164,3 @@ For example:
 from flet import border_radius
 container_1.border_radius = border_radius.all(30)
 ```
-
-## Examples
-
-### Containers with different properties
-
-<Tabs groupId="language">
-  <TabItem value="python" label="Python" default>
-
-```python
-import flet
-from flet import Container, ElevatedButton, OutlinedButton, Page, colors
-
-
-def main(page: Page):
-    page.title = "Containers with background color"
-
-    c1 = Container(
-        content=ElevatedButton("Elevated Button in Container"),
-        bgcolor=colors.YELLOW,
-        padding=5,
-    )
-
-    c2 = Container(
-        content=ElevatedButton(
-            "Elevated Button with opacity=0.5 in Container", opacity=0.5
-        ),
-        bgcolor=colors.YELLOW,
-        padding=5,
-    )
-
-    c3 = Container(
-        content=OutlinedButton("Outlined Button in Container"),
-        bgcolor=colors.YELLOW,
-        padding=5,
-    )
-    page.add(c1, c2, c3)
-
-
-flet.app(target=main)
-```
-  </TabItem>
-</Tabs>
-
-<img src="/img/docs/controls/container/containers-background-color.png" width="40%" />

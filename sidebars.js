@@ -1,22 +1,36 @@
 module.exports = {
-  someSidebar: [
+  docs: [
+    'introduction',
     {
-      'Getting started': [
-        'introduction',
+      type: 'category',
+      label: 'Getting Started',
+      link: {
+        type: 'generated-index',
+        description: 'Flet apps can be created in multiple languages. Follow a getting-started guide below for your language.',
+        slug: "/getting-started"
+      },
+      collapsed: false,
+      items: [
         'getting-started/python',
-        // 'layout',
-        // 'theming',
       ],
-      // 'Tutorials': [
-      //   'getting-started/python',
-      //   // 'tutorials/powershell',
-      //   // 'tutorials/node',
-      // ],
-      'Controls': [
-        'controls/overview',
-        'controls/page',
+    },
+    {
+      type: 'category',
+      label: 'Controls',
+      link: {
+        type: 'doc',
+        id: 'controls/overview'
+      },
+      items: [
         {
-          'Layout': [
+          type: 'category',
+          label: 'Layout',
+          link: {
+            type: 'generated-index',
+            slug: 'controls/layout'
+          },
+          items: [
+            'controls/page',
             'controls/container',
             'controls/row',
             'controls/column',
@@ -28,7 +42,26 @@ module.exports = {
           ]
         },
         {
-          'Basic controls': [
+          type: 'category',
+          label: 'Navigation',
+          link: {
+            type: 'generated-index',
+            slug: 'controls/app-structure-navigation'
+          },
+          items: [
+            'controls/appbar',
+            'controls/navigationrail',
+            'controls/navigationbar',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Information Displays',
+          link: {
+            type: 'generated-index',
+            slug: 'controls/information-displays'
+          },
+          items: [
             'controls/text',
             'controls/icon',
             'controls/image',
@@ -38,7 +71,13 @@ module.exports = {
           ]
         },
         {
-          'Buttons': [
+          type: 'category',
+          label: 'Buttons',
+          link: {
+            type: 'doc',
+            id: 'controls/buttons'
+          },
+          items: [
             'controls/elevatedbutton',
             'controls/filledbutton',
             'controls/filledtonalbutton',
@@ -50,7 +89,13 @@ module.exports = {
           ]
         },
         {
-          'Input and selections': [
+          type: 'category',
+          label: 'Input and Selections',
+          link: {
+            type: 'generated-index',
+            slug: 'controls/input-and-selections'
+          },
+          items: [
             'controls/checkbox',
             'controls/dropdown',
             'controls/radio',
@@ -60,17 +105,19 @@ module.exports = {
           ]
         },
         {
-          'Dialogs, alerts and panels': [
+          type: 'category',
+          label: 'Dialogs, Alerts and Panels',
+          link: {
+            type: 'generated-index',
+            slug: 'controls/dialogs-alerts-panels'
+          },
+          items: [
             'controls/banner',
             'controls/snackbar',
             'controls/alertdialog',
           ]
-        }
-      ],
-      // 'Guides': [
-      //   'hot-reload',
-      //   //'theming',
-      //   //'deployment',
-      // ],
-    }],
+        },
+      ]
+    }
+  ]
 };

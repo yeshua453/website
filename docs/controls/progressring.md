@@ -3,15 +3,18 @@ title: ProgressRing
 sidebar_label: ProgressRing
 slug: progressring
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
-A material design circular progress indicator, which spins to indicate that the application is busy. A control that shows progress along a circle.
+A material design circular progress indicator, which spins to indicate that the application is busy.
+
+A control that shows progress along a circle.
 
 There are two kinds of circular progress indicators:
 
 * *Determinate*. Determinate progress indicators have a specific value at each point in time, and the value should increase monotonically from `0.0` to `1.0`, at which time the indicator is complete. To create a determinate progress indicator, use a non-null value between `0.0` and `1.0`.
 * *Indeterminate*. Indeterminate progress indicators do not have a specific value at each point in time and instead indicate that progress is being made without indicating how much progress remains. To create an indeterminate progress indicator, use a null value.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Examples
 

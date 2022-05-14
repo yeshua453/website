@@ -30,3 +30,13 @@ All Flet controls have the following properties:
 | `height`   | string    |               | Height of the control.    |
 | `padding`  | string    |               | Padding of the control.    |
 | `margin`   | string    |               | Margin of the control.    |
+
+## Controls by categories
+
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```

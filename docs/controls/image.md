@@ -3,10 +3,11 @@ title: Image
 sidebar_label: Image
 slug: image
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 An image is a graphic representation of something (e.g photo or illustration).
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Examples
 

@@ -258,3 +258,14 @@ html[data-theme='dark'] .signup-form input[type=submit] {
     height: 30px;
   }
 }
+
+/* Docs */
+
+.card-image {
+  max-width: 150px;
+  height: 150px;
+}
+
+.card-image img {
+  object-fit: contain;
+}
