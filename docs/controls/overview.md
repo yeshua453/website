@@ -53,9 +53,9 @@ page.add(c)
 
 ### `expand`
 
-When a child Control is placed into a [`Column`](column) or [`Row`](row) you can "expand" it to fill the available space. `expand` property could be a boolean value (`True` - expand control to fill all available space) or an integer - an "expand factor" specifying how to divide a free space with other expanded child controls.
+When a child Control is placed into a [`Column`](controls/column) or [`Row`](controls/row) you can "expand" it to fill the available space. `expand` property could be a boolean value (`True` - expand control to fill all available space) or an integer - an "expand factor" specifying how to divide a free space with other expanded child controls.
 
-For more information and examples about `expand` property see "Expanding children" sections in [`Column`](column#expanding-children) or [`Row`](row#expanding-children).
+For more information and examples about `expand` property see "Expanding children" sections in [`Column`](controls/column#expanding-children) or [`Row`](controls/row#expanding-children).
 
 ### `opacity`
 

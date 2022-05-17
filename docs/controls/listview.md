@@ -17,6 +17,8 @@ import TabItem from '@theme/TabItem';
 
 ## Examples
 
+### Auto-scrolling ListView
+
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 

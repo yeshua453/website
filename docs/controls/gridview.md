@@ -15,6 +15,8 @@ import TabItem from '@theme/TabItem';
 
 ## Examples
 
+### Photo gallery
+
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 

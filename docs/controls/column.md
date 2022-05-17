@@ -13,15 +13,237 @@ import TabItem from '@theme/TabItem';
 
 ## Examples
 
-### Example 1
+### Column spacing
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
+from flet import Column, Container, Page, Slider, Text, alignment, border_radius, colors
 
-# ...
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=50,
+                    height=50,
+                    bgcolor=colors.AMBER,
+                    border_radius=border_radius.all(5),
+                )
+            )
+        return items
+
+    def spacing_slider_change(e):
+        col.spacing = int(e.control.value)
+        col.update()
+
+    gap_slider = Slider(
+        min=0,
+        max=100,
+        divisions=10,
+        value=0,
+        label="{value}",
+        width=500,
+        on_change=spacing_slider_change,
+    )
+
+    col = Column(spacing=0, controls=items(5))
+
+    page.add(Column([Text("Spacing between items"), gap_slider]), col)
+
+flet.app(target=main)
+```
+  </TabItem>
+</Tabs>
+
+### Column wrapping
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import (
+    Column,
+    Container,
+    Page,
+    Row,
+    Slider,
+    Text,
+    alignment,
+    border_radius,
+    colors,
+)
+
+HEIGHT = 400
+
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=30,
+                    height=30,
+                    bgcolor=colors.AMBER,
+                    border_radius=border_radius.all(5),
+                )
+            )
+        return items
+
+    def slider_change(e):
+        col.height = float(e.control.value)
+        col.update()
+
+    width_slider = Slider(
+        min=0,
+        max=HEIGHT,
+        divisions=20,
+        value=HEIGHT,
+        label="{value}",
+        width=500,
+        on_change=slider_change,
+    )
+
+    col = Column(
+        wrap=True,
+        spacing=10,
+        run_spacing=10,
+        controls=items(10),
+        height=HEIGHT,
+    )
+
+    page.add(
+        Column(
+            [
+                Text(
+                    "Change the column height to see how child items wrap onto multiple columns:"
+                ),
+                width_slider,
+            ]
+        ),
+        Container(content=col, bgcolor=colors.AMBER_100),
+    )
+
+flet.app(target=main)
+```
+  </TabItem>
+</Tabs>
+
+### Column vertical alignments
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import Column, Container, Page, Row, Text, alignment, colors
+
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=50,
+                    height=50,
+                    bgcolor=colors.AMBER_500,
+                )
+            )
+        return items
+
+    def column_with_alignment(align):
+        return Column(
+            [
+                Text(align, size=16),
+                Container(
+                    content=Column(items(3), alignment=align),
+                    bgcolor=colors.AMBER_100,
+                    height=400,
+                ),
+            ]
+        )
+
+    page.add(
+        Row(
+            [
+                column_with_alignment("start"),
+                column_with_alignment("center"),
+                column_with_alignment("end"),
+                column_with_alignment("spaceBetween"),
+                column_with_alignment("spaceAround"),
+                column_with_alignment("spaceEvenly"),
+            ],
+            spacing=30,
+            alignment="start",
+        )
+    )
+
+flet.app(target=main)
+```
+  </TabItem>
+</Tabs>
+
+### Column horizontal alignments
+
+<Tabs groupId="language">
+  <TabItem value="python" label="Python" default>
+
+```python
+import flet
+from flet import Column, Container, Page, Row, Text, alignment, colors
+
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=50,
+                    height=50,
+                    bgcolor=colors.AMBER_500,
+                )
+            )
+        return items
+
+    def column_with_horiz_alignment(align):
+        return Column(
+            [
+                Text(align, size=16),
+                Container(
+                    content=Column(
+                        items(3), alignment="start", horizontal_alignment=align
+                    ),
+                    bgcolor=colors.AMBER_100,
+                    width=100,
+                ),
+            ]
+        )
+
+    page.add(
+        Row(
+            [
+                column_with_horiz_alignment("start"),
+                column_with_horiz_alignment("center"),
+                column_with_horiz_alignment("end"),
+            ],
+            spacing=30,
+            alignment="start",
+        )
+    )
+
+flet.app(target=main)
 ```
   </TabItem>
 </Tabs>
