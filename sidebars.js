@@ -36,7 +36,9 @@ module.exports = {
             'controls/column',
             'controls/stack',
             'controls/listview',
+            'controls/listtile',
             'controls/gridview',
+            'controls/card',
             'controls/divider',
             'controls/verticaldivider',
           ]
@@ -51,7 +53,7 @@ module.exports = {
           items: [
             'controls/appbar',
             'controls/navigationrail',
-            'controls/navigationbar',
+            //'controls/navigationbar',
           ]
         },
         {

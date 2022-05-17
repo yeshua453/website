@@ -13,146 +13,234 @@ import TabItem from '@theme/TabItem';
 
 ## Examples
 
-### Horizontal stack - Gap and Padding
+### Row spacing
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
-from flet import Stack, Slider, Text
-with flet.page("horizontal-stack-gap-padding") as page:
+from flet import (
+    Column,
+    Container,
+    Page,
+    Row,
+    Slider,
+    Text,
+    alignment,
+    border_radius,
+    colors,
+)
 
-  bg_color = '#ddddee'
-  page.horizontal_align = 'stretch'
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=50,
+                    height=50,
+                    bgcolor=colors.AMBER,
+                    border_radius=border_radius.all(5),
+                )
+            )
+        return items
 
-  def items(count):
-    items = []
-    for i in range(1, count + 1):
-      items.append(Text(value=i, align='center', vertical_align='center', width=30, height=30, bgcolor='BlueMagenta10', color='white', padding=5))
-    return items
+    def gap_slider_change(e):
+        row.spacing = int(e.control.value)
+        row.update()
 
-  def gap_slider_change(e):
-    spacing_stack.gap = int(e.control.value)
-    spacing_stack.update()
+    gap_slider = Slider(
+        min=0,
+        max=50,
+        divisions=50,
+        value=0,
+        label="{value}",
+        on_change=gap_slider_change,
+    )
 
-  def padding_slider_change(e):
-    spacing_stack.padding = e.control.value
-    spacing_stack.update()
+    row = Row(spacing=0, controls=items(10))
 
-  gap_slider = Slider("Gap between items", min=0, max=50, step=1, value=0, show_value=True, on_change=gap_slider_change)
-  padding_slider = Slider("Stack padding", min=0, max=50, step=1, value=0, show_value=True, on_change=padding_slider_change)
-  spacing_stack = Stack(horizontal=True, bgcolor=bg_color, gap=0, controls=items(5))
-  
-  page.add(gap_slider, padding_slider, spacing_stack)
+    page.add(Column([Text("Spacing between items"), gap_slider]), row)
 
-  input()
+flet.app(target=main)
 ```
   </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/stack/horizontal-stack-gap-padding.gif" width="75%" />
 
-### Horizontal stack - Wrapping
+### Row wrapping
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
-from flet import Stack, Slider, Text
-with flet.page("horizontal-stack-wrapping") as page:
+from flet import (
+    Column,
+    Container,
+    Page,
+    Row,
+    Slider,
+    Text,
+    alignment,
+    border_radius,
+    colors,
+)
 
-  bg_color = '#ddddee'
-  page.horizontal_align = 'stretch'
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=50,
+                    height=50,
+                    bgcolor=colors.AMBER,
+                    border_radius=border_radius.all(5),
+                )
+            )
+        return items
 
-  def items(count):
-    items = []
-    for i in range(1, count + 1):
-      items.append(Text(value=i, align='center', vertical_align='center', width=30, height=30, bgcolor='BlueMagenta10', color='white', padding=5))
-    return items
+    def slider_change(e):
+        row.width = float(e.control.value)
+        row.update()
 
-  def wrap_slider_change(e):
-    width = int(e.control.value)
-    wrap_stack.width = f"{width}%"
-    wrap_stack.update()
+    width_slider = Slider(
+        min=0,
+        max=page.window_width,
+        divisions=20,
+        value=page.window_width,
+        label="{value}",
+        on_change=slider_change,
+    )
 
-  wrap_slider = Slider("Change the stack width to see how child items wrap onto multiple rows:",
-        min=0, max=100, step=10, value=100, show_value=True, value_format='{value}%', on_change=wrap_slider_change)
+    row = Row(
+        wrap=True,
+        spacing=10,
+        run_spacing=10,
+        controls=items(30),
+        width=page.window_width,
+    )
 
-  wrap_stack = Stack(horizontal=True, wrap=True, bgcolor=bg_color, gap=20, controls=items(10))
-  
-  page.add(wrap_slider, wrap_stack)
+    page.add(
+        Column(
+            [
+                Text(
+                    "Change the row width to see how child items wrap onto multiple rows:"
+                ),
+                width_slider,
+            ]
+        ),
+        row,
+    )
 
-  input()
+flet.app(target=main)
 ```
   </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/stack/horizontal-stack-wrapping.gif" width="75%" />
 
-### Horizontal stack - Horizontal alignments
+### Row horizontal alignments
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
-from flet import Stack, Text
-with flet.page("horizontal-stack-horizontal-alignments") as page:
+from flet import Column, Container, Page, Row, Text, alignment, colors
 
-  bg_color = '#ddddee'
-  page.horizontal_align = 'stretch'
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=50,
+                    height=50,
+                    bgcolor=colors.AMBER_500,
+                )
+            )
+        return items
 
-  def items(count):
-    items = []
-    for i in range(1, count + 1):
-      items.append(Text(value=i, align='center', vertical_align='center', width=30, height=30, bgcolor='BlueMagenta10', color='white', padding=5))
-    return items
+    def row_with_alignment(align):
+        return Column(
+            [
+                Text(align, size=16),
+                Container(
+                    content=Row(items(3), alignment=align),
+                    bgcolor=colors.AMBER_100,
+                ),
+            ]
+        )
 
-  def horizontal_stack(horiz_align):
-    return Stack(controls=[
-            Text(value=horiz_align),
-            Stack(horizontal=True, horizontal_align=horiz_align, vertical_align='center', gap=20, bgcolor=bg_color, controls=items(3))
-        ])
+    page.add(
+        row_with_alignment("start"),
+        row_with_alignment("center"),
+        row_with_alignment("end"),
+        row_with_alignment("spaceBetween"),
+        row_with_alignment("spaceAround"),
+        row_with_alignment("spaceEvenly"),
+    )
 
-  page.add(horizontal_stack('start'), horizontal_stack('center'), horizontal_stack('center'), horizontal_stack('space-between'), horizontal_stack('space-around'), horizontal_stack('space-evenly'))
-
-  input()
+flet.app(target=main)
 ```
   </TabItem>
 </Tabs>
 
 <img src="/img/docs/controls/stack/horizontal-stack-horizontal-alignments.png" width="75%" />
 
-### Horizontal stack - Vertical alignments
+### Row vertical alignments
 
 <Tabs groupId="language">
   <TabItem value="python" label="Python" default>
 
 ```python
 import flet
-from flet import Stack, Text
-with flet.page("horizontal-stack-vertical-alignments") as page:
+from flet import Column, Container, Page, Row, Text, alignment, colors
 
-  bg_color = '#ddddee'
-  page.horizontal_align = 'stretch'
+def main(page: Page):
+    def items(count):
+        items = []
+        for i in range(1, count + 1):
+            items.append(
+                Container(
+                    content=Text(value=i),
+                    alignment=alignment.center,
+                    width=50,
+                    height=50,
+                    bgcolor=colors.AMBER_500,
+                )
+            )
+        return items
 
-  def items(count):
-    items = []
-    for i in range(1, count + 1):
-      items.append(Text(value=i, align='center', vertical_align='center', width=30, height=30, bgcolor='BlueMagenta10', color='white', padding=5))
-    return items
+    def row_with_vertical_alignment(align):
+        return Column(
+            [
+                Text(align, size=16),
+                Container(
+                    content=Row(items(3), vertical_alignment=align),
+                    bgcolor=colors.AMBER_100,
+                    height=150,
+                ),
+            ]
+        )
 
-  page.add(
-        Text('start'),
-        Stack(horizontal=True, vertical_align='start', height=100, bgcolor=bg_color, gap=20, controls=items(3)),
-        Text('center'),
-        Stack(horizontal=True, vertical_align='center', height=100, bgcolor=bg_color, gap=20, controls=items(3)),
-        Text('end'),
-        Stack(horizontal=True, vertical_align='end', height=100, bgcolor=bg_color, gap=20, controls=items(3)))
+    page.add(
+        row_with_vertical_alignment("start"),
+        row_with_vertical_alignment("center"),
+        row_with_vertical_alignment("end"),
+    )
 
-  input()
+flet.app(target=main)
 ```
   </TabItem>
 </Tabs>
