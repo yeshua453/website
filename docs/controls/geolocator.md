@@ -136,18 +136,18 @@ ft.app(main)
 
 Returns an instance of `GeolocatorPosition` whose values are available on the platform.
 `GeolocatorPosition` contains the following data members whose default value is None:
-* `latitude`-float
-* `longitude`-float
-* `speed`-float
-* `altitude`-float
-* `timestamp`-float
-* `accuracy`-float
-* `altitude_accuracy`-float
-* `heading`-float
-* `heading_accuracy`-float
-* `speed_accuracy`-float
-* `floor`-int
-* `is_mocked`-bool
+* `latitude`-> float
+* `longitude`-> float
+* `speed`-> float
+* `altitude`-> float
+* `timestamp`-> str
+* `accuracy`-> float
+* `altitude_accuracy`-> float
+* `heading`-> float
+* `heading_accuracy`-> float
+* `speed_accuracy`-> float
+* `floor`-> int
+* `is_mocked`-> bool
 
 ### `get_last_known_position()`
 
