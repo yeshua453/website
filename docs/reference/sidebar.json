@@ -1,0 +1,16 @@
+{
+  "items": [
+    "reference/map/circle_layer",
+    "reference/map/map",
+    "reference/map/map_layer",
+    "reference/map/marker_layer",
+    "reference/map/polygon_layer",
+    "reference/map/polyline_layer",
+    "reference/map/rich_attribution",
+    "reference/map/simple_attribution",
+    "reference/map/text_source_attribution",
+    "reference/map/tile_layer"
+  ],
+  "label": "map",
+  "type": "category"
+}

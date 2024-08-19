@@ -1,13 +1,13 @@
 ---
-sidebar_label: icons
-title: icons
+sidebar_label: cupertino_icons
+title: cupertino_icons
 ---
 
-Flet Material Icons
+Flet Cupertino Icons
 
 To generate/update these values run:
 
-sh ci/generate_material_icons_python.sh
+sh ci/generate_cupertino_icons_python.sh
 
 #### random\_icon
 

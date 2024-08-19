@@ -374,6 +374,9 @@ module.exports = {
         "tutorials/python-chat",
       ],
     },
+    [
+      require("./docs/reference/sidebar.json")
+    ],
     {
       type: "category",
       label: "Reference",
