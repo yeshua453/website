@@ -54,9 +54,21 @@ Defaults to `False`.
 
 True if the control will be selected as the initial focus. If there is more than one control on a page with autofocus set, then the first one added to the page will get focus.
 
+### `bgcolor`
+
+Button's background [color](/docs/reference/colors).
+
+### `color`
+
+Button's text [color](/docs/reference/colors).
+
 ### `content`
 
 A Control representing custom button content.
+
+### `elevation`
+
+Button's elevation.
 
 ### `icon`
 
