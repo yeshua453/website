@@ -1,7 +1,21 @@
+-import --flet.as ft 
+import random
 ---
-title: Getting started
----
+def main(page: ft.page): 
+    page.tittle= "pregunta importante"
+    page.window.width=m 400
+    page.window.height= 300
+    page.window.resizable= false
 
+    margen_inferior= 100
+    margen_lateral= 120
+    movimiento_minimo= 50
+
+    def mover_boton_no(e):
+        max_top = page.height - margen_inferior
+        max_left = page.wigth _ margen_lateral
+
+        tpo_actual
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
